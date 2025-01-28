@@ -1,0 +1,91 @@
+/* Hero Section */
+.hero-section {
+    background: grey;
+    color: #ffffff;
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero-section p {
+    font-size: 1.2rem;
+  }
+  
+  /* Features Section */
+  .features-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 20px;
+    background-color: #f2f2f2;
+  }
+  
+  .feature {
+    max-width: 300px;
+    text-align: center;
+  }
+  
+  .feature h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .feature p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666666;
+  }
+  
+  /* About Us Section */
+  .about-container {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 20px;
+  }
+  
+  .about-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555555;
+    text-align: justify;
+  }
+  
+  .about-text strong {
+    color: #ff5722;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .features-section {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .about-title {
+      font-size: 2rem;
+    }
+  
+    .about-text {
+      font-size: 1rem;
+    }
+  }
+  

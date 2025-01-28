@@ -1,0 +1,67 @@
+/* Display.css */
+
+/* Container for the lists */
+.display-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fafafa;
+}
+
+/* Heading styles */
+h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Style for the unordered list (the lists of food and breakfast items) */
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Style for each list item (food item or breakfast item) */
+li {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  padding: 15px;
+  text-align: center;
+}
+
+/* Hover effect for list items */
+li:hover {
+  transform: translateY(-10px);
+}
+
+/* Image styling */
+img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Text styles */
+h3 {
+  font-size: 1.4rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1rem;
+  color: #777;
+  line-height: 1.4;
+}
