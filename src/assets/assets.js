@@ -1,44 +1,32 @@
-import logo from './logo.png';
-import add_icon from './add_icon.png';
-import order_icon from './order_icon.png';
-
-import facebook_icon from './facebook_icon.png';
-import linkedin_icon from './linkedin_icon.png';
-import twitter_icon from './twitter_icon.png';
-import basket_icon from './basket_icon.png';
-import profile_image from './profile_image.png';
-import profile_icon from './profile_icon.png';
-
-import parcel_icon from './parcel_icon.png';
-import homeybites from './homeybites.jpg';
-import search_icon from './search_icon.png';
-import upload_area from './upload_area.png';
 
 
-import thali1 from './thali1.jpg';
-import thali2 from './thali2.jpg';
-import thali3 from'./thali3.jpg';
-import thali4 from './thali4.jpg';
-import pohe from'./pohe.jpg';
-import upma from './upma.jpg';
+import facebook_icon from '../assets/util/facebook_icon.png';
+import linkedin_icon from '../assets/util/linkedin_icon.png';
+import twitter_icon from '../assets/util/twitter_icon.png';
 
+
+import search_icon from './util/search_icon.png';
+
+
+import homeybites from '../assets/util/homeybites.jpg';
+
+
+
+import thali1 from '../assets/Thalis/thali1.jpg';
+import thali2 from '../assets/Thalis/thali2.jpg'
+import thali3 from '../assets/Thalis/thali3.jpg'
+import thali4 from '../assets/Thalis/thali4.jpg'
+import pohe from '../assets/Breakfast/pohe.jpg';
+import upma from '../assets/Breakfast/upma.jpg';
 
 
 
 export const assets = {
-  logo,
-  add_icon,
-  order_icon,
-  profile_image,
   facebook_icon,
   linkedin_icon,
   twitter_icon,
-  basket_icon,
-  upload_area,
-  parcel_icon,
   homeybites,
-  search_icon,
-  profile_icon
+  search_icon
 };
 
 export const food_list = [
