@@ -6,6 +6,9 @@ import Cart from './pages/Cart/cart'
 
 import Placeorder from './pages/placeorder/placeorder'
 import Footer from './components/Footer/Footer'
+import LoginSignup from './components/login-signup/LoginSignup'
+//import index from './components/login-signup/index.css'
+
 
 
 
@@ -16,15 +19,18 @@ return (
 
  <Navbar/>
 
+
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/order' element={<Placeorder />} />
         </Routes>
+      
 
 
       </div>
       <Footer />
+     
 
     </>
   )
