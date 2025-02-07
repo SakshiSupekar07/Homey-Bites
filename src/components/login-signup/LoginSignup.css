@@ -55,7 +55,7 @@
     background:transparent;
     border:none;
     outline:none;
-    color: #797979;
+    color:grey;
     font-size: 19px;
 
 }
@@ -92,6 +92,10 @@
 .gray{
     background: #EAEAEA;
     color:#676767;
+}
+.icon{
+    background-color: lightgray;
+
 }
 
 .error-message {

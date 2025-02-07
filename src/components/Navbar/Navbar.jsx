@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import '../Navbar.css'
  import {assets} from '../../assets/assets'
  import search_icon from "../../assets/util/search_icon.png";
-import {Link} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 
 
 const Navbar =({setShowLogin})=> {
   const[menu,setMenu]=useState("menu");
+  const navigate = useNavigate();
+
   return (
     <div className='navbar'> 
     <img src={assets.homeybites} alt="" className="logo"/>
@@ -20,7 +22,7 @@ const Navbar =({setShowLogin})=> {
     <img src={assets.search_icon} alt="" />
     <div className="navbar-search-icon">
       
-    <button onClick={()=>setShowLogin(true)}>Sign In</button>
+    <button onClick={() => navigate('/login')}>Sign In</button>
 
     </div>
     </div>
