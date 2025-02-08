@@ -11,10 +11,7 @@
     const [action,setAction]=useState("Login");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
-    const [dob, setDob] = useState("");
+
     const [errorMessage, setErrorMessage] = useState("");
     const API_BASE_URL ="https://homeybites.onrender.com ";
     const LOGIN_API = "https://homeybites.onrender.com/api/v1/auth/login";
@@ -73,7 +70,7 @@
             
             
 
-         
+          <form onSubmit={}>
           <div className="input">
                 <img src={email_icon} alt=""/>
                 <input type="email" placeholder='Email Id'/>
@@ -83,39 +80,13 @@
                 <img src={password_icon} alt=""/>
                <input type="password" placeholder='Password'/>
             </div>
-            
-            {action==="Sign Up" &&(
-                <>
-           
-           
-
-           
-         <div className="input">
-                 <img src={password_icon} alt=""/>
-               <input type="password" placeholder='Confirm password'/>
-            </div>
-            <div className="input">
-                 <img src={phone_icon} alt=""/>
-                <input type="text" placeholder='Phone number'/>
-            </div>
-            <div className="input">
-                <img src={date_icon} alt=""/>
-                 <input type="date" />
-           </div>
+            </form>
           
-
-             </>
-          )}
-           
-
-            
-         </div>
-        {action=="Sign Up"? <div></div>:  <div className="forget-password"> Forget Password</div> }
-
       
          <div className="submit-container">
              <div className={action==="Login" ?"submit gray":"submit"} onClick={()=>{setAction("Sign Up")}}>SignUp</div>
              <div className={action==="Sign Up"?"submit gray":"submit"}onClick={()=>{setAction("Login")}}>Login</div>
+         </div>
          </div>
 
       
