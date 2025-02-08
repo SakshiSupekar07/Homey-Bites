@@ -1,4 +1,36 @@
-.container{
+/* Ensure full-page background applies only to login */
+.login-page {
+    /* Your background color */
+    min-height: 100vh;         
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a fixed minimum height for the form container */
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    min-height: 450px; /* Set a minimum height to balance both Login & Signup */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+ /* .container{
     display:flex;
     flex-direction: column;
     margin: auto;
@@ -6,37 +38,39 @@
     width:600px;
     background: #fff;
     padding-bottom:30px ;
-}
-.header{
+}  */
+.header1{
     display: flex;
     flex-direction: column;
-    align-items:center;
-    gap:9px;
+    align-items: center;
+    gap: 7px;
     width: 100%;
-    margin-top: 30px;
-
+    margin-top: -508px;
 }
 .text
 {
-    color:#3c009d;
-    font-size:48px;
-    font-weight:700;
+    color: #3c009d;
+  font-size: 48px;
+  font-weight: 700;
+ 
+  margin-top: 500px;
 }
-.underline
+/* .underline
 {
     width:61px;
     height:6px;
     background: #3c009d;
     border-radius: 9px;
-}
+} */
 .inputs
 {
-    margin-top:55px;
+   
     display:flex;
     flex-direction: column;
-    gap:25px;
+    gap:10px;
+    
 }
-.input{
+/* .input{
     display:flex;
     align-items: center;
     margin:auto;
@@ -44,12 +78,26 @@
     height:80px;
     background:#eaeaea;
     border-radius: 6px;
+    box-sizing: border-box;
+ 
 
+} */
+.input {
+    display: flex;
+    align-items: center;
+    background: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;  /* Ensure it fits within the container */
+    box-sizing: border-box; /* Prevents extra width issues */
 }
+
+
 .input img{
     margin:0px 30px;
 }
-.input input{
+
+/* .input input{
     height:50px;
     width:400px;
     background:transparent;
@@ -58,6 +106,16 @@
     color:grey;
     font-size: 19px;
 
+} */
+.input input {
+    flex: 1; /* Makes input take up available space */
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 8px;
+    font-size: 16px;
+    width: 100%;  /* Ensure it does not exceed parent */
+    box-sizing: border-box; 
 }
 .forget-password{
     padding-left:62px;
@@ -72,9 +130,9 @@
 .submit-container
 {
     display:flex;
-    gap:30px;
-    margin:60px auto;
-
+    justify-content: space-between;
+    margin-top: 20px;
+    
 }
 .submit{
     display:flex;
@@ -107,4 +165,7 @@
     padding: 10px;
 }
 
+ 
 
+
+ 

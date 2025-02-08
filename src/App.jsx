@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home/home'
 import Cart from './pages/Cart/cart'
 
+
 import Placeorder from './pages/placeorder/placeorder'
 import Footer from './components/Footer/Footer'
 import LoginSignup from './components/login-signup/LoginSignup'
@@ -18,9 +19,7 @@ return (
     <>
 <div className='app'>
 
-<Routes>
-          <Route path='/' element={<Navbar />} />
-        </Routes>
+<Navbar/>
 
 
         <Routes>
