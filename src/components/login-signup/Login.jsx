@@ -131,7 +131,7 @@ const Login = () => {
               <button className="submit" type='submit'>Login</button>
               <div className="submit" onClick={() => navigate('/signup')}>Sign In</div>
             </div>
-            <div className="verify-email" onClick={verifyEmailHandler}> verify email</div>
+            <div className="verify-email" onClick={verifyEmailHandler}> Verify Email</div>
           </div>
         </form>
 
