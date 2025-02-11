@@ -8,9 +8,9 @@ import twitter_icon from '../assets/util/twitter_icon.png';
 import search_icon from './util/search_icon.png';
 
 
-import homeybites from '../assets/util/homeybites.jpg';
+import homeybites from '../assets/util/homeybites-logo.png';
 
-
+import profile_image from '../assets/util/profile.png';
 
 import thali1 from '../assets/Thalis/thali1.jpg';
 import thali2 from '../assets/Thalis/thali2.jpg'
@@ -26,7 +26,8 @@ export const assets = {
   linkedin_icon,
   twitter_icon,
   homeybites,
-  search_icon
+  search_icon,
+  profile_image
 };
 
 export const food_list = [

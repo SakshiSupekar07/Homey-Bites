@@ -24,9 +24,27 @@
     justify-content: center;
 }
 
+.container-signup {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    min-height: 450px; /* Set a minimum height to balance both Login & Signup */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 130px;
+}
 
 
 
+.verify-email {
+    cursor: pointer;
+    margin: auto;
+    margin-top: 15px;
+}
 
 
 
@@ -118,10 +136,14 @@
     box-sizing: border-box; 
 }
 .forget-password{
-    padding-left:62px;
-    margin-top: 27px;
+    margin-left: 319px;
+    margin-bottom: 10px;
     color:#797979;
-    font-size: 18px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.forget-password:hover{
+    color: #000000;
 }
 .forget-password span{
     color:#4c00b4;

@@ -7,38 +7,39 @@ import Cart from './pages/Cart/cart'
 
 import Placeorder from './pages/placeorder/placeorder'
 import Footer from './components/Footer/Footer'
-import LoginSignup from './components/login-signup/LoginSignup'
-
-
-
+import Login from './components/login-signup/Login'
+import SignUp from './components/login-signup/SignUp'
+import { ToastContainer } from 'react-toastify'
+import VerifyOtp from './components/login-signup/VerifyOtp'
 
 
 const App = () => {
-return (
-  
+  return (
+
     <>
-<div className='app'>
+      <div className='app'>
+        <Navbar />
+        <div className='app-components'>
+          <ToastContainer position='top-center' className="custom-toast-container" />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/order' element={<Placeorder />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/verify-otp' element={<VerifyOtp />} />
+          </Routes>
+          <Routes>
+            <Route path='/' element={<Footer />} />
+          </Routes>
+        </div>
+      </div>
 
-<Navbar/>
 
 
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/order' element={<Placeorder />} />
-          <Route path='/login' element={<LoginSignup />} />
-        </Routes>
-        <Routes>
-          <Route path='/' element={<Footer />} />
-        </Routes>
-       
-    </div>
-      
 
 
-      
-    
-     
+
 
     </>
   )

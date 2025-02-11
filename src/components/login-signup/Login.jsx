@@ -1,440 +1,143 @@
- import React from 'react'
- import { useState } from 'react'
- import './LoginSignup.css'
- import user_icon from '/person.png'
- import email_icon from '/email.png'
- import password_icon from '/password.png'
- import phone_icon from '/phone.svg'
- import date_icon from '/dob.svg'
+import React from 'react'
+import { useState, useEffect } from 'react'
+import './LoginSignup.css'
+import email_icon from '/email.png'
+import password_icon from '/password.png'
+import { logIn, sendOtp } from '../../Services/UserService'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import { doLogin } from '../Auth'
 
- const LoginSignup = () => {
-    const [action,setAction]=useState("Login");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const Login = () => {
 
-    const [errorMessage, setErrorMessage] = useState("");
-    const API_BASE_URL ="https://homeybites.onrender.com ";
-    const LOGIN_API = "https://homeybites.onrender.com/api/v1/auth/login";
-    const SIGNUP_API = "https://homeybites.onrender.com/api/v1/auth/register";
+  const navigate = useNavigate();
 
+  const [data, setData] = useState({
+    username: '',
+    password: ''
+  })
 
-    const handleSubmit = async () => {
-      setErrorMessage(""); // Clear errors before submission
-  
-      if (action === "Login") {
-        if (!email || !password) {
-          setErrorMessage("Please fill in all fields.");
-          return;
-        }
-        try {
-          const response = await axios.post(LOGIN_API, { email, password });
-          alert("Login Successful! ✅");
-          console.log("User Data:", response.data);
-        } catch (error) {
-          setErrorMessage(error.response?.data?.message || "Login failed.");
-        }
-      } else {
-        if (!name || !email || !password || !confirmPassword || !phone || !dob) {
-          setErrorMessage("Please fill in all fields.");
-          return;
-        }
-        if (password !== confirmPassword) {
-          setErrorMessage("Passwords do not match.");
-          return;
-        }
-  
-        try {
-          const response = await axios.post(SIGNUP_API, { name, email, password, phone, dob });
-          alert("Signup Successful! 🎉");
-          console.log("User Data:", response.data);
-        } catch (error) {
-          setErrorMessage(error.response?.data?.message || "Signup failed.");
-        }
-      }
-    };
-   
-   return (
+  const [error, setError] = useState({
+    errors: {},
+    isError: false
+  })
+
+  useEffect(() => {
+    //console.log(data);
+  }, [data])
+
+  // change handler
+  const changeHandler = (event, property) => {
+    setData({ ...data, [property]: event.target.value })
+  }
+
+  const verifyEmailHandler = () => {
+    if(!data.username){
+      toast.error("Please enter email id to send OTP")
+    }
+    sendOtp(data.username).then((response) => {
+      console.log(response)
+      console.log("success")
+      toast.success("Email verification OTP sent successfully..!")
+      navigate('/verify-otp')
+
+    }).catch((error)=>{
+      console.log(error)
+      console.log("error log")
+    })
+  }
+
+  //login handler
+  const loginHandler = (event) => {
+    event.preventDefault()
+
+    //console.log(data)
+    // validation
+    if (!data.username && !data.password) {
+      toast.error("please enter email id and password..!")
+      return;
+    }
+
+    // if (!data.username) {
+    //   toast.error("please enter the email id..!")
+    //   return;
+    // }
+
+    // if (!data.password) {
+    //   toast.error("please enter the password..!")
+    //   return;
+    // }
+    // if(localStorage.getItem("isVerified")){
+    //   toast.error("Unable to login. Email not verified..!")
+    //   return;
+    // }
+
+    //sending data to backend
+    logIn(data).then((response) => {
+      console.log(response)
+      console.log("SUccess log")
+
+      // save data to local storage
+      doLogin(response, () => {
+        console.log("data stored in local storage")
+
+        //redirect
+        navigate('/')
+      })
+
+      toast.success("User logged in successfully..!")
+    
+    }).catch((error) => {
+
+      // email related errors
+      if (error.response?.data?.username)
+        toast.error(error.response?.data?.username)
+
+      // password length related errors
+      if (error.response?.data?.password)
+        toast.error(error.response?.data?.password)
+
+      console.log(error)
+      // console.log(error.response?.data?.message)
+
+      // invalid username and password
+      toast.error(error.response?.data?.message)
+    })
+  }
+
+  return (
     <body className="login-page">
-    <div className='container'>
+      <div className='container'>
         <div className="header1">
-          <div className="text">{action}</div>
-           <div className="underline"></div>
+          <div className="text">Login</div>
+          <div className="underline"></div>
         </div>
-        <div className="inputs">
-           {action==="Login"? <div></div>:  <div className="input">
-               <img src={user_icon} alt=""/>
-                 <input type="text" placeholder='Name'/>
-              
-               
-            </div>}
-            
-            
-
-          <form onSubmit={}>
-          <div className="input">
-                <img src={email_icon} alt=""/>
-                <input type="email" placeholder='Email Id'/>
+        <form onSubmit={loginHandler}>
+          <div className="inputs">
+            <div className="input">
+              <img src={email_icon} alt="" />
+              <input type="email" id="emaiid" placeholder='Email Id' onChange={(e) => changeHandler(e, 'username')} value={data.username} />
             </div>
 
             <div className="input">
-                <img src={password_icon} alt=""/>
-               <input type="password" placeholder='Password'/>
+              <img src={password_icon} alt="" />
+              <input type="password" id="password" placeholder='Password' onChange={(e) => changeHandler(e, 'password')} value={data.password} />
             </div>
-            </form>
-          
-      
-         <div className="submit-container">
-             <div className={action==="Login" ?"submit gray":"submit"} onClick={()=>{setAction("Sign Up")}}>SignUp</div>
-             <div className={action==="Sign Up"?"submit gray":"submit"}onClick={()=>{setAction("Login")}}>Login</div>
-         </div>
-         </div>
+            <div className="forget-password"> Forget Password?</div>
 
-      
-     </div>
-     </body>
-     
-   );
- }
+            <div className="submit-container">
+              {/* <div className={action === "Login" ? "submit gray" : "submit"} onClick={() => { setAction("Sign Up") }}>SignUp</div> */}
 
- export default LoginSignup;
+              <button className="submit" type='submit'>Login</button>
+              <div className="submit" onClick={() => navigate('/signup')}>Sign In</div>
+            </div>
+            <div className="verify-email" onClick={verifyEmailHandler}> verify email</div>
+          </div>
+        </form>
 
+      </div>
+    </body>
 
-
-// import React, { useState } from 'react';
-// import './LoginSignup.css';
-// import user_icon from '/person.png';
-// import email_icon from '/email.png';
-// import password_icon from '/password.png';
-// import phone_icon from '/phone.svg';
-// import date_icon from '/dob.svg';
-
-// const LoginSignup = () => {
-//   const [action, setAction] = useState("Login");
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [confirmPassword, setConfirmPassword] = useState("");
-//   const [name, setName] = useState("");
-//   const [phone, setPhone] = useState("");
-//   const [dob, setDob] = useState("");
-//   const [errorMessage, setErrorMessage] = useState("");
-
-//   // Email Validation Regex
-//   const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
-
-//   // Phone Number Validation (10 digits)
-//   const validatePhone = (phone) => /^[0-9]{10}$/.test(phone);
-
-//   // Validation Logic
-//   const handleSubmit = () => {
-//     if (action === "Login") {
-//       if (!email || !password) {
-//         setErrorMessage("Please fill in all fields.");
-//         return;
-//       }
-//       if (!validateEmail(email)) {
-//         setErrorMessage("Invalid email address.");
-//         return;
-//       }
-//       if (password.length < 6) {
-//         setErrorMessage("Incorrect password. Must be at least 6 characters.");
-//         return;
-//       }
-//       setErrorMessage(""); // Clear errors
-//       alert("Login successful! ✅");
-//     } else {
-//       if (!name || !email || !password || !confirmPassword || !phone || !dob) {
-//         setErrorMessage("Please fill in all fields.");
-//         return;
-//       }
-//       if (!validateEmail(email)) {
-//         setErrorMessage("Invalid email address.");
-//         return;
-//       }
-//       if (password.length < 6) {
-//         setErrorMessage("Password must be at least 6 characters.");
-//         return;
-//       }
-//       if (password !== confirmPassword) {
-//         setErrorMessage("Passwords do not match.");
-//         return;
-//       }
-//       if (!validatePhone(phone)) {
-//         setErrorMessage("Invalid phone number. Must be 10 digits.");
-//         return;
-//       }
-//       setErrorMessage("");
-//       alert("Signup successful! 🎉");
-//     }
-//   };
-
-//   return (
-//     <div className='container'>
-//       <div className="header">
-//         <div className="text">{action}</div>
-//         <div className="underline"></div>
-//       </div>
-
-//       <div className="inputs">
-//         {action === "Sign Up" && (
-//           <div className="input">
-//             <img src={user_icon} alt="user icon" />
-//             <input type="text" placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
-//           </div>
-//         )}
-
-//         <div className="input">
-//           <img src={email_icon} alt="email icon" />
-//           <input type="email" placeholder='Email Id' value={email} onChange={(e) => setEmail(e.target.value)} />
-//         </div>
-
-//         <div className="input">
-//           <img src={password_icon} alt="password icon" />
-//           <input type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-//         </div>
-
-//         {action === "Sign Up" && (
-//           <>
-//             <div className="input">
-//               <img src={password_icon} alt="password icon" />
-//               <input type="password" placeholder='Confirm password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-//             </div>
-//             <div className="input">
-//               <img src={phone_icon} alt="phone icon" />
-//               <input type="text" placeholder='Phone number' value={phone} onChange={(e) => setPhone(e.target.value)} />
-//             </div>
-//             <div className="input">
-//               <img src={date_icon} alt="date icon" />
-//               <input type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
-//             </div>
-//           </>
-//         )}
-//       </div>
-
-//       {errorMessage && <div className="error-message">{errorMessage}</div>}
-
-//       {action === "Login" && (
-//         <div className="forget-password">
-//           Forget Password? <span>Click here</span>
-//         </div>
-//       )}
-
-//       <div className="submit-container">
-//         <div className={action === "Login" ? "submit gray" : "submit"} onClick={() => setAction("Sign Up")}>
-//           Sign Up
-//         </div>
-//         <div className={action === "Sign Up" ? "submit gray" : "submit"} onClick={() => setAction("Login")}>
-//           Login
-//         </div>
-//       </div>
-
-//       <div className="submit main-submit" onClick={handleSubmit}>
-//         {action}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default LoginSignup;
-
-
-// import React, { useState } from 'react';
-// import './LoginSignup.css';
-// import user_icon from '/person.png';
-// import email_icon from '/email.png';
-// import password_icon from '/password.png';
-
-// const LoginSignup = () => {
-//     const [action, setAction] = useState("Login");
-
-//     return (
-//         <div className="login-page"> {/* Gradient applies only here */}
-//             <div className='login-container'> {/* Centered container */}
-//                 <div className="header">
-//                     <div className="text">{action}</div>
-//                     <div className="underline"></div>
-//                 </div>
-
-//                 <div className="inputs">
-//                     {action === "Login" ? null : (
-//                         <div className="input">
-//                             <img src={user_icon} alt="User" />
-//                             <input type="text" placeholder="Name" />
-//                         </div>
-//                     )}
-
-//                     <div className="input">
-//                         <img src={email_icon} alt="Email" />
-//                         <input type="email" placeholder="Email Id" />
-//                     </div>
-
-//                     <div className="input">
-//                         <img src={password_icon} alt="Password" />
-//                         <input type="password" placeholder="Password" />
-//                     </div>
-//                 </div>
-
-//                 {action === "Sign Up" ? null : (
-//                     <div className="forget-password">
-//                         Forget Password? <span>Click here</span>
-//                     </div>
-//                 )}
-
-//                 <div className="submit-container">
-//                     <div 
-//                         className={action === "Login" ? "submit gray" : "submit"} 
-//                         onClick={() => setAction("Sign Up")}
-//                     >
-//                         SignUp
-//                     </div>
-//                     <div 
-//                         className={action === "Sign Up" ? "submit gray" : "submit"} 
-//                         onClick={() => setAction("Login")}
-//                     >
-//                         Login
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-
-// export default LoginSignup;
-
-
-
-
-
-// import React, { useState } from 'react';
-// import './LoginSignup.css';
-// import user_icon from '/person.png';
-// import email_icon from '/email.png';
-// import password_icon from '/password.png';
-// import phone_icon from '/phone.svg';
-// import date_icon from '/dob.svg';
-
-// const LoginSignup = () => {
-//   const [action, setAction] = useState("Login");
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [confirmPassword, setConfirmPassword] = useState("");
-//   const [name, setName] = useState("");
-//   const [phone, setPhone] = useState("");
-//   const [dob, setDob] = useState("");
-//   const [errorMessage, setErrorMessage] = useState("");
-
-//   // Email Validation
-//   const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
-
-//   // Phone Number Validation (10 digits)
-//   const validatePhone = (phone) => /^[0-9]{10}$/.test(phone);
-
-//   const handleSubmit = () => {
-//     if (action === "Login") {
-//       if (!email || !password) {
-//         setErrorMessage("Please fill in all fields.");
-//         return;
-//       }
-//       if (!validateEmail(email)) {
-//         setErrorMessage("Invalid email format.");
-//         return;
-//       }
-//       if (password.length < 6) {
-//         setErrorMessage("Password must be at least 6 characters.");
-//         return;
-//       }
-//       setErrorMessage("");
-//       alert("Login successful ✅");
-//     } else {
-//       if (!name || !email || !password || !confirmPassword || !phone || !dob) {
-//         setErrorMessage("Please fill in all fields.");
-//         return;
-//       }
-//       if (!validateEmail(email)) {
-//         setErrorMessage("Invalid email format.");
-//         return;
-//       }
-//       if (password.length < 6) {
-//         setErrorMessage("Password must be at least 6 characters.");
-//         return;
-//       }
-//       if (password !== confirmPassword) {
-//         setErrorMessage("Passwords do not match.");
-//         return;
-//       }
-//       if (!validatePhone(phone)) {
-//         setErrorMessage("Phone number must be 10 digits.");
-//         return;
-//       }
-//       setErrorMessage("");
-//       alert("Signup successful 🎉");
-//     }
-//   };
-
-//   return (
-//     <div className='container'>
-//       <div className="header1">
-//         <div className="text">{action}</div>
-//         <div className="underline"></div>
-//       </div>
-
-//       <div className="inputs">
-//         {action === "Sign Up" && (
-//           <div className="input">
-//             <img src={user_icon} alt="user icon" />
-//             <input type="text" placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
-//           </div>
-//         )}
-
-//         <div className="input">
-//           <img src={email_icon} alt="email icon" />
-//           <input type="email" placeholder='Email Id' value={email} onChange={(e) => setEmail(e.target.value)} />
-//         </div>
-
-//         <div className="input">
-//           <img src={password_icon} alt="password icon" />
-//           <input type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-//         </div>
-
-//         {action === "Sign Up" && (
-//           <>
-//             <div className="input">
-//               <img src={password_icon} alt="password icon" />
-//               <input type="password" placeholder='Confirm password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-//             </div>
-//             <div className="input">
-//               <img src={phone_icon} alt="phone icon" />
-//               <input type="text" placeholder='Phone number' value={phone} onChange={(e) => setPhone(e.target.value)} />
-//             </div>
-//             <div className="input">
-//               <img src={date_icon} alt="date icon" />
-//               <input type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
-//             </div>
-//           </>
-//         )}
-//       </div>
-
-//       {errorMessage && <div className="error-message">{errorMessage}</div>}
-
-//       {action === "Login" && (
-//         <div className="forget-password">
-//           Forget Password? <span>Click here</span>
-//         </div>
-//       )}
-
-//       <div className="submit-container">
-//         <div className={action === "Login" ? "submit gray" : "submit"} onClick={() => setAction("Sign Up")}>
-//           Sign Up
-//         </div>
-//         <div className={action === "Sign Up" ? "submit gray" : "submit"} onClick={() => setAction("Login")}>
-//           Login
-//         </div>
-//       </div>
-
-//       <div className="submit main-submit" onClick={handleSubmit}>
-//         {action}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default LoginSignup;
+  );
+};
+export default Login;

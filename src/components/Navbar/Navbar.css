@@ -1,9 +1,12 @@
 .navbar {
-    padding: 20px 0;
+    padding: 5px 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    position: fixed;
+    background-color: #ffffff;
+    width: 100%;
+    z-index: 999999;
 }
 
 .navbar .logo {
@@ -25,7 +28,7 @@
 .navbar-menu a {
     margin-left : 25px;
     text-decoration: none;
-    color: #323232;
+    color: #49557e;
     font-weight: bold;
     
 }

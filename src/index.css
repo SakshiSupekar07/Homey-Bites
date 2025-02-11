@@ -18,9 +18,20 @@ a{
 }
 .app
 {
-  width:80%;
+  width:100%;
   margin:auto;
 }
+
+.app-components
+{
+  width: 75%;
+  margin: auto;
+}
+
+.custom-toast-container {
+  margin-top: 80px !important;
+}
+
 @keyframes fadeIn{
 
   0%{
