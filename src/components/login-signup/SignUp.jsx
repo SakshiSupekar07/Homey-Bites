@@ -5,6 +5,7 @@ import user_icon from '/person.png'
 import email_icon from '/email.png'
 import password_icon from '/password.png'
 import phone_icon from '/phone.svg'
+import gender_icon from '/gender.svg'
 import date_icon from '/dob.svg'
 import { useNavigate } from 'react-router-dom'
 import { signIn } from '../../Services/UserService'
@@ -28,7 +29,7 @@ const Signup = () => {
 
     useEffect(() => {
         console.log(data);
-        localStorage.setItem("username",data.emailId);
+        localStorage.setItem("username", data.emailId);
     }, [data])
 
     // change handler
@@ -40,7 +41,7 @@ const Signup = () => {
     const signinHandler = (event) => {
         event.preventDefault()
 
-        if(!data.firstName && !data.lastName && !data.emailId && !data.phoneNo && !data.dob && !data.gender && !data.password && !data.cpassword) {
+        if (!data.firstName && !data.lastName && !data.emailId && !data.phoneNo && !data.dob && !data.gender && !data.password && !data.cpassword) {
             toast.error("Please fill all the details..!")
             return;
         }
@@ -56,53 +57,53 @@ const Signup = () => {
             console.log(error)
 
             // first name
-            if (error.response?.data?.firstName){
+            if (error.response?.data?.firstName) {
                 toast.error(error.response?.data?.firstName)
                 return;
             }
 
             // last name
-            if (error.response?.data?.lastName){
+            if (error.response?.data?.lastName) {
                 toast.error(error.response?.data?.lastName)
                 return;
-        }
+            }
 
             // emai id
-            if (error.response?.data?.emailId){
+            if (error.response?.data?.emailId) {
                 toast.error(error.response?.data?.emailId)
                 return;
             }
             // phone number
-            if (error.response?.data?.phoneNo){
+            if (error.response?.data?.phoneNo) {
                 toast.error(error.response?.data?.phoneNo)
                 return;
             }
 
             // date of birth
-            if (error.response?.data?.dob){
+            if (error.response?.data?.dob) {
                 toast.error(error.response?.data?.dob)
                 return;
             }
 
             // gender
-            if (error.response?.data?.gender){
+            if (error.response?.data?.gender) {
                 toast.error(error.response?.data?.gender)
                 return;
             }
 
             // password
-            if (error.response?.data?.password){
+            if (error.response?.data?.password) {
                 toast.error(error.response?.data?.password)
                 return;
             }
 
             // first name
-            if (error.response?.data?.cPassword){
+            if (error.response?.data?.cPassword) {
                 toast.error(error.response?.data?.cpassword)
                 return;
             }
 
-            if (error.response?.data?.message){
+            if (error.response?.data?.message) {
                 toast.error(error.response?.data?.message)
                 return;
             }
@@ -149,8 +150,19 @@ const Signup = () => {
 
                         <div className="input">
                             <img src={password_icon} alt="" />
-                            <input type="text" placeholder='enter gender' onChange={(e) => changeHandler(e, 'gender')} value={data.gender} />
+                            
+                                <input type="radio" name="gender" value="Male" onChange={(e) => changeHandler(e, 'gender')} checked={data.gender === "Male"} /> Male
+                               
+                      
+                         
+                                <input type="radio" name="gender" value="Female" onChange={(e) => changeHandler(e, 'gender')} checked={data.gender === "Female"} />
+                                Female
+                           
+                               <input type="radio" name="gender" value="Other" onChange={(e) => changeHandler(e, 'gender')} checked={data.gender === "Other"} />
+                                Other
+                            
                         </div>
+
 
                         <div className="input">
                             <img src={password_icon} alt="" />
@@ -163,8 +175,8 @@ const Signup = () => {
                         </div>
 
                         <div className="submit-container">
-                            <button className="submit" type='submit'>Signin</button>
-                            <div className="submit" onClick={() => navigate('/login')}>Login</div>
+                            <button className="submit" type='submit'>SignIn</button>
+                            <div className="submit" onClick={() => navigate('/login')}>SignUp</div>
                         </div>
                     </div>
                 </form>

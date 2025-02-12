@@ -11,6 +11,7 @@ import Login from './components/login-signup/Login'
 import SignUp from './components/login-signup/SignUp'
 import { ToastContainer } from 'react-toastify'
 import VerifyOtp from './components/login-signup/VerifyOtp'
+import ForgetPassword from './components/login-signup/forgetpassword'
 
 
 const App = () => {
@@ -28,6 +29,8 @@ const App = () => {
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/verify-otp' element={<VerifyOtp />} />
+            <Route path='/forgetpassword' element={<ForgetPassword />} />
+
           </Routes>
           <Routes>
             <Route path='/' element={<Footer />} />

@@ -55,7 +55,7 @@
 }
 @media(max-width:1050px){
     .header{
-        height:38vw;
+        height:50vw;
     }
 
    
@@ -63,7 +63,7 @@
         max-width: 45%;
     }
 }
-@media(max-width:750px){
+@media(max-width:250px){
     .header-contents{
         max-width: 55%;
     }
