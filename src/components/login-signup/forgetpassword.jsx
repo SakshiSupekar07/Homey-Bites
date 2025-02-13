@@ -1,24 +1,32 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sendOtp } from '../../Services/UserService';
+import { forgetpassword, sendOtp } from '../../Services/UserService';
 import { toast } from 'react-toastify';
 
 const ForgetPassword = () => {
-  const [email, setEmail] = useState('');
+  const [data, setData] = useState({
+      username: ''
+    })
   const navigate = useNavigate();
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
+  const changeHandler = (event, property) => {
+    setData({ ...data, [property]: event.target.value })
+  }
 
-  const handleSendOtp = () => {
-    if (!email) {
+  const handleSendOtp = (event) => {
+
+    event.preventDefault()
+    // console.log(data.username)
+    if (!data.username) {
       toast.error("Please enter your email ID.");
       return;
     }
 
-    sendOtp(email)
+    forgetpassword(data.username)
       .then((response) => {
+
+        localStorage.setItem("username", data.username);
+
         console.log("OTP Sent Successfully:", response);
         toast.success("OTP sent to your email. Please check your inbox.");
         navigate('/verify-otp');  // Redirecting to OTP verification page
@@ -30,18 +38,30 @@ const ForgetPassword = () => {
   };
 
   return (
-    <div className="forget-password-page">
-      <h2>Reset Password</h2>
-      <p>Enter your registered email address to receive a reset link.</p>
-      <input
-        type="email"
-        placeholder="Enter Email ID"
-        value={email}
-        onChange={handleEmailChange}
-      />
-      <button onClick={handleSendOtp}>Send OTP</button>
-    </div>
+    <>
+      <div className="login-page">
+        <div className='container'>
+          <div className="header1">
+            <div className="text">Forget Password</div>
+            <div className="underline"></div>
+          </div>
+          <form onSubmit={handleSendOtp}>
+            <div className="inputs">
+              <div className="input">
+                {/* <img src={email_icon} alt="" /> */}
+                <input type="email" id="emaiid" placeholder='Email Id' onChange={(e) => changeHandler(e, 'username')} value={data.username} />
+              </div>
+
+              <div className="submit-container">
+                <button className="submit" type='submit'>Verify OTP</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </>
   );
 };
 
-export default forgetpassword;
+export default ForgetPassword;

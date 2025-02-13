@@ -1,9 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Fooddisplay.css';
 import { StoreContext } from '../../context/storecontext';
+import { fetchMenu } from '../../Services/MenuService';
 
 const Fooddisplay = ({ category }) => {
+
+  const [data, setData] = useState([]);
+  const [type, setType] = useState('Thali');
   const { food_list } = useContext(StoreContext);
+
+  useEffect(() => {
+    fetchMenu(type).then((response) => {
+      // response.
+      //console.log(response.data[0])
+      console.log(response)
+      setData(response)
+    })
+      // .then((response))
+      //   .then((data) => setData(data))
+      .catch((error) => console.error("Error fetching data:", error));
+
+    console.log(data)
+  }, []);
 
   const filteredFoodList =
     category === 'All' ? food_list : food_list.filter((food) => food.category === category);
@@ -12,16 +30,18 @@ const Fooddisplay = ({ category }) => {
     <div className="food-display" id="food-display">
       <h2>Top Thalis For You</h2>
       <div className="food-grid">
-        {filteredFoodList.map((food) => (
-          <div key={food._id} className="food-card">
-            <img src={food.image} alt={food.name} className="food-image" />
-            <div className="food-info">
-              <h3>{food.name}</h3>
-              <p className="food-description">{food.description}</p>
-             
-            </div>
-          </div>
-        ))}
+        
+
+          {data.map((data) => (
+              <div key={data.menuId} className="food-card">
+                <img src={data.imageUrl} alt={data.menuName} className="food-image" />
+                <div className="food-info">
+                  <h3>{data.menuName}</h3>
+                  <p className="food-description">{data.description}</p>
+
+                </div>
+              </div>
+          ))}
       </div>
     </div>
   );

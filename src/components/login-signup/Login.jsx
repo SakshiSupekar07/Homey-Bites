@@ -47,12 +47,10 @@ const Login = () => {
     })
   }
   //forget  password handler
-  const forgetpasswordHandler = () => {
-    navigate('/forget-password');  // Navigate to the Forget Password Page
-  };
+  // const forgetpasswordHandler = () => {
+  //   navigate('/forget-password');  // Navigate to the Forget Password Page
+  // };
   
-
-
   //login handler
   const loginHandler = (event) => {
     event.preventDefault()
@@ -112,7 +110,7 @@ const Login = () => {
   }
 
   return (
-    <body className="login-page">
+    <div className="login-page">
       <div className='container'>
         <div className="header1">
           <div className="text">Sign-Up</div>
@@ -142,7 +140,7 @@ const Login = () => {
         </form>
 
       </div>
-    </body>
+    </div>
 
   );
 };

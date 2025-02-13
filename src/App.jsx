@@ -14,6 +14,7 @@ import VerifyOtp from './components/login-signup/VerifyOtp'
 import ForgetPassword from './components/login-signup/forgetpassword'
 
 
+
 const App = () => {
   return (
 
@@ -30,7 +31,7 @@ const App = () => {
             <Route path='/signup' element={<SignUp />} />
             <Route path='/verify-otp' element={<VerifyOtp />} />
             <Route path='/forgetpassword' element={<ForgetPassword />} />
-
+           
           </Routes>
           <Routes>
             <Route path='/' element={<Footer />} />

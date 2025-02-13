@@ -33,6 +33,20 @@ a{
   margin-top: 80px !important;
 }
 
+@media (max-width: 768px) {
+  .app-components {
+    width: 75%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-components {
+    width: 100%;
+    margin: auto;
+  }
+}
+
 @keyframes fadeIn{
 
   0%{
