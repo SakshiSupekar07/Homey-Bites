@@ -32,7 +32,7 @@ const ForgetPassword = () => {
         navigate('/verify-otp');  // Redirecting to OTP verification page
       })
       .catch((error) => {
-        console.error("Error Sending OTP:", error);
+        console.error("Error Sending OTP:")
         toast.error(error.response?.data?.message || "Failed to send OTP.");
       });
   };

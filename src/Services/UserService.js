@@ -21,6 +21,6 @@ export const sendOtp = (username) => {
 } 
 
 export const forgetpassword = (username) => {
-    return myAxios.post('/api/v1/users/forget-password?username='+username)
+    return myAxios.post('/api/v1/auth/forget-password?username='+username)  
     .then((response) => response.data)
 }
