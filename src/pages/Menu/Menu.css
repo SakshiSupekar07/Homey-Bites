@@ -1,0 +1,156 @@
+.menu-container {
+    margin-top: 90px;
+    width: 100%;
+    height: 100%;
+}
+
+/* Food Display Container */
+.food-display {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.food-display h2 {
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: black;
+}
+
+.food-type {
+    margin: 10px 0 30px 0;
+}
+
+.food-type button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10%;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.food-type button:hover {
+    background-color: #ddd;
+}
+
+/* Grid for 3 Cards Per Row */
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 3 equal-width columns */
+    gap: 20px;
+    /* Space between cards */
+    justify-content: center;
+    /* Center the grid items */
+}
+
+/* Individual Card Styles
+.food-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.food-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+} */
+
+
+/* Image in Card */
+.food-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Card Content */
+.food-info {
+    padding: 15px;
+    text-align: left;
+}
+
+.food-info h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #444;
+}
+
+.food-description {
+    margin: 0 0 10px;
+    color: #666;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.food-price {
+    font-weight: bold;
+    color: #000;
+    font-size: 16px;
+}
+
+.food-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.food-buttons button {
+    width: 140px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10%;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.food-buttons .add-to-cart {
+    background-color: #f44336;
+    color: white;
+}
+
+.food-buttons .buy-now {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.add-to-cart:hover {
+    background-color: #ff7f7f;
+}
+
+.buy-now:hover {
+    background-color: #90ee90;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .food-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 cards per row */
+    }
+
+    
+}
+
+@media (max-width: 480px) {
+    .food-grid {
+        grid-template-columns: 1fr;
+        /* 1 card per row */
+    }
+
+    
+}

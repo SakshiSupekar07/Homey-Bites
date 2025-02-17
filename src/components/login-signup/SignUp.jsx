@@ -51,7 +51,7 @@ const Signup = () => {
             console.log(response)
             console.log("SUccess log")
             toast.success("Email registeration OTP has sent to your email id..!")
-            navigate('/verify-otp')
+            navigate('/verify-otp', { state: { from: "SignUp"}});
 
         }).catch((error) => {
             console.log(error)
@@ -111,7 +111,7 @@ const Signup = () => {
     }
 
     return (
-        <body className="login-page">
+        <div className="login-page">
             <div className='container-signup'>
                 <div className="header1">
                     <div className="text">Sign In</div>
@@ -181,7 +181,7 @@ const Signup = () => {
                     </div>
                 </form>
             </div>
-        </body>
+        </div>
 
     );
 }

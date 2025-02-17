@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate,useLocation } from 'react-router-dom';
 import { forgetpassword, sendOtp } from '../../Services/UserService';
 import { toast } from 'react-toastify';
 
@@ -8,6 +8,7 @@ const ForgetPassword = () => {
       username: ''
     })
   const navigate = useNavigate();
+  
 
   const changeHandler = (event, property) => {
     setData({ ...data, [property]: event.target.value })
@@ -29,7 +30,7 @@ const ForgetPassword = () => {
 
         console.log("OTP Sent Successfully:", response);
         toast.success("OTP sent to your email. Please check your inbox.");
-        navigate('/verify-otp');  // Redirecting to OTP verification page
+        navigate('/verify-otp', { state: { from: "ForgetPassword"}}); // Redirecting to OTP verification page
       })
       .catch((error) => {
         console.error("Error Sending OTP:")

@@ -11,8 +11,10 @@ const home = () => {
   return (
     <div>
         <Header/>
-        <Fooddisplay category={category}/>
+        <Fooddisplay/>
+        <div>
         <About/>
+        </div>
     </div>
   );
 };

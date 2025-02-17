@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './Fooddisplay.css';
 import { StoreContext } from '../../context/storecontext';
-import { fetchMenu } from '../../Services/MenuService';
+import { fetchMenuByType } from '../../Services/MenuService';
 
 const Fooddisplay = ({ category }) => {
 
@@ -10,7 +10,7 @@ const Fooddisplay = ({ category }) => {
   const { food_list } = useContext(StoreContext);
 
   useEffect(() => {
-    fetchMenu(type).then((response) => {
+    fetchMenuByType(type).then((response) => {
       // response.
       //console.log(response.data[0])
       console.log(response)

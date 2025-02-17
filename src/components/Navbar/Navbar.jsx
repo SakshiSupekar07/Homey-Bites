@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import './Navbar.css'
 import { assets } from '../../assets/assets'
 import search_icon from "../../assets/util/search_icon.png";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { doLogout, isLoggedIn } from '../Auth';
-
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = ({ setShowLogin }) => {
-  const [menu, setMenu] = useState("menu");
+  const [menu, setMenu] = useState("home");
+  const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [login, setLogin] = useState(false)
 
@@ -17,6 +19,17 @@ const Navbar = ({ setShowLogin }) => {
     console.log("logged innnn")
   }, [login])
 
+
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
   const logOut = () => {
     doLogout(() => {
       setLogin(false)
@@ -24,36 +37,42 @@ const Navbar = ({ setShowLogin }) => {
     })
   }
 
+  const handleToggle = () => {
+    setShowMenu(!showMenu);
+    console.log(showMenu)
+  }
+
   return (
     <div className='navbar'>
       <img src={assets.homeybites} alt="" className="logo" />
-      <ul className="navbar-menu">
-        <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</Link>
-        <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</a>
-        <a href='#about us' onClick={() => setMenu("about")} className={menu === "about" ? "active" : ""}>About</a>
-        <a href='#Footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
-      </ul>
-      <div className="navbar-right">
-        <img src={assets.search_icon} alt="" />
-        {
+      <nav className={showMenu ? "nav-mobile" : "nav-web"}>
+        <ul className="navbar-menu">
+          <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</Link>
+          <Link to='/menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</Link>
+          {/* <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</a>   */}
+          <a href='#' onClick={() => setMenu("about-us")} className={menu === "about" ? "active" : ""}>About</a>
+          <a href='#Footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
+          {
           login && (
             <>
-              <img className='profile-image' src={assets.profile_image} alt='profile image' />
-              <button onClick={logOut}>Logout</button>
+              <a> <img className='profile-image' src={assets.profile_image} alt='profile image' /> Profile</a>
+              <a href='/logout' onClick={logOut}>Logout</a>
             </>
           )
         }
 
         {
           !login && (
-            <div className="navbar-search-icon">
-              <button onClick={() => navigate('/login')}>Sign In</button>
-            </div>
+            <Link to='/login' onClick={() => setMenu("login")} className={menu === "login" ? "active" : ""}>Login</Link>
           )
         }
-
-      </div>
-
+        </ul>
+      </nav>
+      <div className='ham-menu'>  
+        <button onClick={handleToggle}>
+        <GiHamburgerMenu></GiHamburgerMenu>
+        </button>
+        </div> 
     </div>
   )
 }

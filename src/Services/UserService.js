@@ -15,6 +15,11 @@ export const VerifyEmail = (otp, username) => {
     .then((response) => response.data)
 }
 
+export const VerifyOtp = (otp, username) => {
+    return myAxios.post('/api/v1/auth/verify-otp?otp='+otp+'&username='+username)
+    .then((response) => response.data)
+}
+
 export const sendOtp = (username) => {
     return myAxios.post('/api/v1/auth/resend-otp?username='+username)
     .then((response) => response.data)

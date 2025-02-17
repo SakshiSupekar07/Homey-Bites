@@ -1,17 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './LoginSignup.css'
 import password_icon from '/password.png'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { VerifyEmail } from '../../Services/UserService'
 
 const VerifyOtp = () => {
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const prevLocation = useRef(location.pathname)
+
   const [data, setData] = useState({
-          otp: '',
-          username: '',
+    otp: '',
+    username: '',
   })
 
   const [error, setError] = useState({
@@ -21,12 +24,13 @@ const VerifyOtp = () => {
 
   useEffect(() => {
     //console.log(data.otp);
+    console.log(location.state?.from)
   })
 
   // change handler
   const changeHandler = (event, property) => {
     setData({ ...data, [property]: event.target.value })
-}
+  }
 
   //login handler
   const VerifyOtpHandler = (event) => {
@@ -39,19 +43,36 @@ const VerifyOtp = () => {
       return;
     }
 
-    //sending data to backend
-    VerifyEmail(data.otp, localStorage.getItem("username")).then((response) => {
-      localStorage.removeItem("username")
-      
-      console.log(response)
-      console.log("SUccess log")
-      toast.success("Registeration successfully..! Please Login")
-      navigate('/login')
+    if (location.state?.from === "ForgetPassword") {
 
-    }).catch((error) => {
-      console.log(error)
-      toast.error(error.response?.data?.message)
-    })
+      VerifyEmail(data.otp, localStorage.getItem("username")).then((response) => {
+        localStorage.removeItem("username")
+
+        console.log(response)
+        console.log("SUccess log")
+        toast.success("Email verified successfully..! Please reset your password")
+        navigate('/reset-password')
+
+      }).catch((error) => {
+        console.log(error)
+        toast.error(error.response?.data?.message)
+      })
+    }
+    else if (location.state?.from === "SignUp") {
+      //sending data to backend
+      VerifyEmail(data.otp, localStorage.getItem("username")).then((response) => {
+        localStorage.removeItem("username")
+
+        console.log(response)
+        console.log("SUccess log")
+        toast.success("Registeration successfully..! Please Login")
+        navigate('/login')
+
+      }).catch((error) => {
+        console.log(error)
+        toast.error(error.response?.data?.message)
+      })
+    }
   }
 
   return (
