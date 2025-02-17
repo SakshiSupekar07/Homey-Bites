@@ -58,6 +58,25 @@
     top: -5px;
     right: -5px;
 }
+.navbar-menu a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .navbar-menu a:hover {
+    color: white;
+    background-color: #ff6600; 
+    border-radius: 5px;
+  }
+  
+  .navbar-menu .active {
+    font-weight: bold;
+    color: #ff6600;
+  }
+  
+
 
 .navbar button {
     background: transparent;
