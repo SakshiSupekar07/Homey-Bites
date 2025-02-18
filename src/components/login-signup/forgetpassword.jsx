@@ -49,7 +49,7 @@ const ForgetPassword = () => {
           <form onSubmit={handleSendOtp}>
             <div className="inputs">
               <div className="input">
-                {/* <img src={email_icon} alt="" /> */}
+            
                 <input type="email" id="emaiid" placeholder='Email Id' onChange={(e) => changeHandler(e, 'username')} value={data.username} />
               </div>
 
