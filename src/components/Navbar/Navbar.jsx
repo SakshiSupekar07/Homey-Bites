@@ -56,7 +56,7 @@ const Navbar = ({ setShowLogin }) => {
           login && (
             <>
               <a>  Profile</a>
-              <a href='/login' onClick={logOut}>Logout</a>
+              <Link to='/login' onClick={logOut}>Logout</Link>
             </>
           )
         }
