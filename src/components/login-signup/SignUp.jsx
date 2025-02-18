@@ -114,7 +114,7 @@ const Signup = () => {
         <div className="login-page">
             <div className='container-signup'>
                 <div className="header1">
-                    <div className="text">Sign In</div>
+                    <div className="text">Register</div>
                     <div className="underline"></div>
                 </div>
                 <form onSubmit={signinHandler}>
@@ -175,8 +175,8 @@ const Signup = () => {
                         </div>
 
                         <div className="submit-container">
-                            <button className="submit" type='submit'>SignIn</button>
-                            <div className="submit" onClick={() => navigate('/login')}>SignUp</div>
+                            <button className="submit" type='submit'>Register</button>
+                            <div className="submit" onClick={() => navigate('/login')}>Login</div>
                         </div>
                     </div>
                 </form>

@@ -113,7 +113,7 @@ const Login = () => {
     <div className="login-page">
       <div className='container'>
         <div className="header1">
-          <div className="text">Sign-Up</div>
+          <div className="text">Login</div>
           <div className="underline"></div>
         </div>
         <form onSubmit={loginHandler}>
@@ -132,8 +132,8 @@ const Login = () => {
             <div className="submit-container">
               {/* <div className={action === "Login" ? "submit gray" : "submit"} onClick={() => { setAction("Sign Up") }}>SignUp</div> */}
 
-              <button className="submit" type='submit'>SignUp</button>
-              <div className="submit" onClick={() => navigate('/signup')}>Sign In</div>
+              <button className="submit" type='submit'>Login</button>
+              <div className="submit" onClick={() => navigate('/signup')}>Register</div>
             </div>
             <div className="verify-email" onClick={verifyEmailHandler}> Verify Email</div>
           </div>
