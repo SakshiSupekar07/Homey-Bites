@@ -75,6 +75,15 @@
     font-weight: bold;
     color: #ff6600;
   }
+  .profile-image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+  }
+  ul a{
+    
+  }
   
 
 

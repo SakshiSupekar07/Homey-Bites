@@ -55,7 +55,7 @@ const Navbar = ({ setShowLogin }) => {
           {
           login && (
             <>
-              <a> <img className='profile-image' src={assets.profile_image} alt='profile image' /> Profile</a>
+              <a>  Profile</a>
               <a href='/logout' onClick={logOut}>Logout</a>
             </>
           )
