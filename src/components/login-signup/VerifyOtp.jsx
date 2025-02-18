@@ -79,7 +79,7 @@ const VerifyOtp = () => {
     <body className="login-page">
       <div className='container'>
         <div className="header1">
-          <div className="text">Verify Email</div>
+          <div className="text">Verify Email </div>
           <div className="underline"></div>
         </div>
         <form onSubmit={VerifyOtpHandler}>
