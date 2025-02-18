@@ -35,10 +35,9 @@ const App = () => {
             <Route path='/menu' element={<Menu />} />
            
           </Routes>
-          <Routes>
-            <Route path='/' element={<Footer />} />
-          </Routes>
+          
         </div>
+        <Footer/>
       </div>
 
 
