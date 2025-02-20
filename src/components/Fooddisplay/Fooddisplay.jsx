@@ -1,48 +1,63 @@
-import React, { useState, useContext, useEffect } from 'react';
-import './Fooddisplay.css';
-import { StoreContext } from '../../context/storecontext';
-import { fetchMenuByType } from '../../Services/MenuService';
+import React, { useState, useContext, useEffect } from "react";
+import "./Fooddisplay.css";
+import { StoreContext } from "../../context/storecontext";
+import { fetchMenuByType } from "../../Services/MenuService";
 
 const Fooddisplay = ({ category }) => {
-
-  const [data, setData] = useState([]);
-  const [type, setType] = useState('Thali');
+  const [thaliData, setThaliData] = useState([]);
+  const [breakfastData, setBreakfastData] = useState([]);
   const { food_list } = useContext(StoreContext);
 
   useEffect(() => {
-    fetchMenuByType(type).then((response) => {
-      // response.
-      //console.log(response.data[0])
-      console.log(response)
-      setData(response)
-    })
-      // .then((response))
-      //   .then((data) => setData(data))
-      .catch((error) => console.error("Error fetching data:", error));
+    // Fetch Thali items
+    fetchMenuByType("Thali")
+      .then((response) => {
+        console.log("Thali Data:", response);
+        setThaliData(response);
+      })
+      .catch((error) => console.error("Error fetching Thali:", error));
 
-    console.log(data)
+    // Fetch Breakfast items
+    fetchMenuByType("Breakfast")
+      .then((response) => {
+        console.log("Breakfast Data:", response);
+        setBreakfastData(response);
+      })
+      .catch((error) => console.error("Error fetching Breakfast:", error));
   }, []);
-
-  const filteredFoodList =
-    category === 'All' ? food_list : food_list.filter((food) => food.category === category);
 
   return (
     <div className="food-display" id="food-display">
+      {/* Thali Section */}
       <h2>Top Thalis For You</h2>
       <div className="food-grid">
-        
-
-          {data.map((data) => (
-              <div key={data.menuId} className="food-card">
-                <img src={data.imageUrl} alt={data.menuName} className="food-image" />
-                <div className="food-info">
-                  <h3>{data.menuName}</h3>
-                  <p className="food-description">{data.description}</p>
-
-                </div>
-              </div>
-          ))}
+        {thaliData.map((item) => (
+          <div key={item.menuId} className="food-card">
+            <img src={item.imageUrl} alt={item.menuName} className="food-image" />
+            <div className="food-info">
+              <h3>{item.menuName}</h3>
+              <p className="food-description">{item.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
+
+      {/* Breakfast Section */}
+   
+      <h2>Delicious Breakfast Options</h2>
+      <div className="food-grid">
+        {breakfastData.map((item) => (
+          <div key={item.menuId} className="food-card">
+            <img src={item.imageUrl} alt={item.menuName} className="food-image" />
+            <div className="food-info">
+              <h3>{item.menuName}</h3>
+              <p className="food-description">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+  
     </div>
   );
 };
