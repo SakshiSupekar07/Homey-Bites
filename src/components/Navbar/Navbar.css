@@ -66,23 +66,25 @@
   }
   
   .navbar-menu a:hover {
-    color: white;
-    background-color: #ff6600; 
-    border-radius: 5px;
+    color: #ff6600;
   }
   
   .navbar-menu .active {
     font-weight: bold;
     color: #ff6600;
   }
+  
   .profile-image{
     width: 40px;
     height: 40px;
     border-radius: 50%;
 
   }
-  
-
+ .nav-web .navbar-menu .shopping_cart
+ {
+    height: 30px;
+ }
+    
 .navbar button {
     background: transparent;
     font-size: 16px;
@@ -96,10 +98,10 @@
     background-color: #fff4f2;
 }
 
-.navbar .active {
+/* .navbar .active {
     padding-bottom: 2px;
     border-bottom: 2px solid #49557e;
-}
+} */
 
 .ham-menu {
     display: none;

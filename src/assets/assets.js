@@ -3,9 +3,9 @@
 import facebook_icon from '../assets/util/facebook_icon.png';
 import linkedin_icon from '../assets/util/linkedin_icon.png';
 import twitter_icon from '../assets/util/twitter_icon.png';
+import shopping_cart from  '../assets/util/shopping_cart.png';
 
 
-import search_icon from './util/search_icon.png';
 
 
 import homeybites from '../assets/util/homeybites-logo.png';
@@ -26,8 +26,8 @@ export const assets = {
   linkedin_icon,
   twitter_icon,
   homeybites,
-  search_icon,
-  profile_image
+  profile_image,
+  shopping_cart,
 };
 
 export const food_list = [
