@@ -13,6 +13,8 @@ const Navbar = ({ setShowLogin }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [profileOpen, setProfileOpen] = useState(false);
+
   const [login, setLogin] = useState(false)
 
   useEffect(() => {
@@ -46,21 +48,36 @@ const Navbar = ({ setShowLogin }) => {
   return (
     <div className='navbar'>
       <Link to='/'>  <img src={assets.homeybites} alt="" className="logo" /></Link>
+      
       <nav className={showMenu ? "nav-mobile" : "nav-web"}>
         <ul className="navbar-menu">
           <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</Link>
           <Link to='/menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</Link>
           {/* <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</a>   */}
           <a href='#' onClick={() => setMenu("about")} className={menu === "about" ? "active" : ""}>About</a>
-          <a href='#Footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
+          {/* <a href='#Footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact Us</a> */}
           {
             login && (
               <>
-                <a href='#' onClick={() => setMenu("profile")} className={menu === "profile" ? "active" : ""}>Profile</a>
-                <Link to='/login' onClick={logOut}>Logout</Link>
-                <Link to='/cart' onClick={() => setMenu("cart")} className={menu === "cart" ? "active" : ""}>
+
+                <a href='#' onClick={() => setProfileOpen(!profileOpen)} className={menu === "profile-drop" ? "active" : ""}>Profile ▼</a>
+                <div className='dropdown'>
+                  {
+                    profileOpen && (
+                      <div id='profile-dropdown' className='dropdown-menu'>
+                        <ul>
+                          <li><a href='#' onClick={() => setMenu("profile")} className={menu === "profile" ? "active" : ""}>Profile</a></li>
+                          <li><a href='#' onClick={() => setMenu("orders")} className={menu === "orders" ? "active" : ""}>My orders</a></li>
+                          <li><Link to='/login' onClick={logOut}>Logout</Link></li>
+                        </ul>
+                      </div>
+                    )
+                  }
+                </div>
+
+                {/* <Link to='/cart' onClick={() => setMenu("cart")} className={menu === "cart" ? "active" : ""}>
                   <img className='shopping_cart' src={assets.shopping_cart} alt="" />
-                </Link>
+                </Link> */}
 
               </>
             )
@@ -73,6 +90,14 @@ const Navbar = ({ setShowLogin }) => {
           }
         </ul>
       </nav>
+      <div className='shopping_cart'>
+        {
+          login && (
+              <img src={assets.shopping_cart} alt="" />
+          )
+        }
+        </div>
+
       <div className='ham-menu'>
         <button onClick={handleToggle}>
           <GiHamburgerMenu></GiHamburgerMenu>

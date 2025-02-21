@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify'
 import VerifyOtp from './components/login-signup/VerifyOtp'
 import ForgetPassword from './components/login-signup/forgetpassword'
 import Menu from './pages/Menu/Menu'
+import MenuItem from './pages/MenuItem/Menuitem'
 
 
 
@@ -33,6 +34,7 @@ const App = () => {
             <Route path='/verify-otp' element={<VerifyOtp />} />
             <Route path='/forgetpassword' element={<ForgetPassword />} />
             <Route path='/menu' element={<Menu />} />
+            <Route path='/menu/item' element={<MenuItem/>} />
            
           </Routes>
           

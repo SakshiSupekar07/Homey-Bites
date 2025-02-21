@@ -8,6 +8,7 @@
     width: 100%;
     margin: 0;
     padding: 0;
+    margin-top: 100px;
 }
 
 /* Set a fixed minimum height for the form container */
@@ -35,7 +36,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 130px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -159,18 +161,26 @@
     
 }
 .submit{
+    border: none;
+    margin: 2px;
     display:flex;
     justify-content: center;
     align-items: center;
     width:220px;
     height:59px;
     color:#fff;
-    background-color:#FFA54F ;
+    background-color: #ff8b1c;
     border-radius: 50px;
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
 }
+
+.submit:hover{
+    background-color:#FFA54F;
+}
+
+
 .gray{
     background: #EAEAEA;
     color:#676767;

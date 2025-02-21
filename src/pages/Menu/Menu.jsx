@@ -36,26 +36,25 @@ const Menu = ({ }) => {
     return (
         <div className='menu-container'>
             <div className="menu-header">
-                <div className="food-display" id="food-display">
+                <div className="menu-display" id="menu-display">
                     {/* <h2>Top Thalis For You</h2> */}
                     {
                         data && (
-                            <div className='food-type'>
+                            <div className='menu-type'>
                                 <button onClick={() => getMenuByType("Thali")}>Thali</button> | <button onClick={() => getMenuByType("Breakfast")}>Breakfast</button>
                             </div>
                         )
                     }
-                    <div className="food-grid">
+                    <div className="menu-grid">
                         {data.map((data) => (
-                            <div key={data.menuId} className="food-card">
-                                <img src={data.imageUrl} alt={data.menuName} className="food-image" />
-                                <div className="food-info">
+                            <div key={data.menuId} className="menu-card">
+                                <img src={data.imageUrl} alt={data.menuName} className="menu-image" />
+                                <div className="menu-info">
                                     <h3>{data.menuName}</h3>
-                                    <p className="food-description">{data.description}</p>
-                                    <p className="food-price">Price: {data.price}</p>
-                                    <div className='food-buttons'>
+                                    <p className="menu-description">{data.description}</p>
+                                    <p className="menu-price">Price: {data.price}</p>
+                                    <div className='menu-buttons'>
                                         <button className="add-to-cart">Add to Cart</button>
-                                        <button className="buy-now">Order now</button>
                                     </div>
                                 </div>
                             </div>

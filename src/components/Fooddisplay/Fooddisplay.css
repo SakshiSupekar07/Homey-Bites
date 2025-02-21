@@ -1,26 +1,33 @@
 /* Food Display Container */
 .food-display {
-    padding: 20px;
-    background-color: #f9f9f9;
-    text-align: center;
-  }
-  
-  .food-display h2 {
-    margin-bottom: 20px;
-    font-size: 30px;
-    color: black;
-  }
-  
-  /* Grid for 3 Cards Per Row */
-  .food-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 3 equal-width columns */
-    gap: 20px; /* Space between cards */
-    justify-content: center; /* Center the grid items */
-  }
-  
-  /* Individual Card Styles */
-  .food-card {
+  padding: 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.food-display h2 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  color: black;
+}
+
+.food-scroll-container {
+  width: 100%; /* Full width */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  padding: 10px;
+  white-space: nowrap; 
+}
+
+/* Grid for 3 Cards Per Row */
+.food-grid {
+    display: flex;
+    flex-direction: row; 
+    gap: 15px; 
+    flex-wrap: nowrap; 
+}
+
+/* Individual Card Styles */
+/* .food-card {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -28,55 +35,66 @@
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .food-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  
-  /* Image in Card */
-  .food-image {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* Card Content */
-  .food-info {
-    padding: 15px;
-  }
-  
-  .food-info h3 {
-    margin: 0 0 10px;
-    font-size: 20px;
-    color: #444;
-  }
-  
-  .food-description {
-    margin: 0 0 10px;
-    color: #666;
-    font-size: 17px;
-    line-height: 1.5;
-  }
-  
-  .food-price {
-    font-weight: bold;
-    color: #000;
-    font-size: 16px;
-  }
-  
-  /* Responsive Design for Smaller Screens */
-  @media (max-width: 768px) {
-    .food-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .food-grid {
-      grid-template-columns: 1fr; /* 1 card per row */
-    }
-  }
-  
+  } */
+
+.food-card { 
+  flex: 0 0 auto; /* Prevents shrinking & forces horizontal layout */
+  width: 300px; /* Set a fixed width per card */
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.food-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Image in Card */
+.food-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+  border-radius: 10px 10px 0 0;
+}
+
+.food-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card Content */
+.food-info {
+  padding: 15px;
+}
+
+.food-info h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #444;
+}
+
+.food-description {
+  /* margin: 0 0 10px;
+  color: #666;
+  font-size: 17px;
+  line-height: 1.5; */
+
+  font-size: 14px;
+  color: #555;
+  max-height: 40px; /* Limits height */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.food-price {
+  font-weight: bold;
+  color: #000;
+  font-size: 16px;
+}
