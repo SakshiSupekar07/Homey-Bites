@@ -11,12 +11,12 @@
   color: black;
 }
 
-.food-scroll-container {
+ .food-scroll-container {
   width: 100%; /* Full width */
   overflow-x: auto; /* Enable horizontal scrolling */
   padding: 10px;
   white-space: nowrap; 
-}
+} 
 
 /* Grid for 3 Cards Per Row */
 .food-grid {

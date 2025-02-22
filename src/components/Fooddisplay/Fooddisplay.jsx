@@ -54,7 +54,7 @@ const Fooddisplay = ({ category }) => {
       {/* Breakfast Section */}
 
       <h2>Delicious Breakfast Options</h2>
-      <div className="food-scroll-container">
+       <div className="food-scroll-container"> 
         <div className="food-grid">
           {breakfastData.map((item) => (
             <div key={item.menuId} onClick={() => handleClick(item.menuId)} className="food-card">
