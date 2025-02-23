@@ -46,6 +46,10 @@
     cursor: pointer;
 }
 
+.navbar .cart{
+    display: none;
+}
+
 .navbar-right {
     display: flex;
     align-items: center;

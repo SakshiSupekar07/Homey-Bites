@@ -90,7 +90,7 @@ const Navbar = ({ setShowLogin }) => {
           }
         </ul>
       </nav>
-      <div className='shopping_cart'>
+      <div className={login ? 'shopping_cart' : 'cart'}>
         {
           login && (
               <img src={assets.shopping_cart} alt="" />
