@@ -1,7 +1,52 @@
+/* Main container - Full width, aligns image and content side by side */
 .menu-item-container {
     margin-top: 100px;
+    display: flex;
+    align-items: center; /* Aligns image and text side by side */
+    justify-content: flex-start; /* Image sticks to the left */
+    padding: 20px;
+    gap: 50px; /* Space between image and text */
+    width: 100%;
 }
 
-.menu-item-display {
-    background-color: #fff;
+/* Image Styling */
+.menu-item-image {
+    width: 400px; /* Medium-sized */
+    height: auto;
+    max-height: 400px;
+    border-radius: 10px;
+    object-fit: cover;
 }
+
+/* Menu details */
+.menu-item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    max-width: 500px; /* Restrict width to prevent stretching */
+}
+
+/* Buttons container */
+.menu-item-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* Individual button */
+.menu-item-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f44336 ;
+    color: white;
+    font-size: 25px;
+    transition: background 0.3s;
+}
+
+.menu-item-button:hover {
+    background-color: #0056b3;
+}
+
+
