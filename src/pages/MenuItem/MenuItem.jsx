@@ -31,7 +31,7 @@ const MenuItem = () => {
                     <div className="menu-item-info">
                     <h3>{data.menuName}</h3>
                         <h3>{data.description}</h3>
-                        <h3>{data.price}</h3>
+                       <h3>Price:</h3> <h3>{data.price}</h3>
                         <div className="menu-item-buttons">
                             <button className="menu-item-button">Add to Cart</button>
                             <button className="menu-item-button">Order Now</button>
