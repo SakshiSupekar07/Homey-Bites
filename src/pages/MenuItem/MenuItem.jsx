@@ -4,7 +4,7 @@ import { getMenu } from "../../Services/MenuService";
 import { useEffect, useState } from "react";
 
 const MenuItem = () => {
-    const [data, setData] = useState([]);
+   
 
     const [data, setData] = useState([]);
 
@@ -42,7 +42,8 @@ const MenuItem = () => {
                     </div>
                 </div>
             </div>
-        </Base>
+            </div>
+      
     )
 };
 
