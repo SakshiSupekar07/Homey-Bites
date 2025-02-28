@@ -14,7 +14,6 @@ const Fooddisplay = ({ category }) => {
     // Fetch Thali items
     fetchMenuByType("Thali")
       .then((response) => {
-        console.log("Thali Data:", response);
         setThaliData(response);
       })
       .catch((error) => console.error("Error fetching Thali:", error));
@@ -22,7 +21,6 @@ const Fooddisplay = ({ category }) => {
     // Fetch Breakfast items
     fetchMenuByType("Breakfast")
       .then((response) => {
-        console.log("Breakfast Data:", response);
         setBreakfastData(response);
       })
       .catch((error) => console.error("Error fetching Breakfast:", error));

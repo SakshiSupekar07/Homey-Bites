@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react'
 import './LoginSignup.css'
 import email_icon from '/email.png'
 import password_icon from '/password.png'
-import { logIn, sendOtp,forgetpassword } from '../../Services/UserService'
+import { logIn, sendOtp, forgetpassword } from '../../Services/UserService'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { doLogin } from '../Auth'
+import Base from '../../components/Base/Base'
 
 const Login = () => {
 
@@ -30,9 +31,9 @@ const Login = () => {
   const changeHandler = (event, property) => {
     setData({ ...data, [property]: event.target.value })
   }
- //Email Handler
+  //Email Handler
   const verifyEmailHandler = () => {
-    if(!data.username){
+    if (!data.username) {
       toast.error("Please enter email id to send OTP")
     }
     sendOtp(data.username).then((response) => {
@@ -41,7 +42,7 @@ const Login = () => {
       toast.success("Email verification OTP sent successfully..!")
       navigate('/verify-otp')
 
-    }).catch((error)=>{
+    }).catch((error) => {
       console.log(error)
       console.log("error log")
     })
@@ -50,7 +51,7 @@ const Login = () => {
   // const forgetpasswordHandler = () => {
   //   navigate('/forget-password');  // Navigate to the Forget Password Page
   // };
-  
+
   //login handler
   const loginHandler = (event) => {
     event.preventDefault()
@@ -90,7 +91,7 @@ const Login = () => {
       })
 
       toast.success("User logged in successfully..!")
-    
+
     }).catch((error) => {
 
       // email related errors
@@ -110,38 +111,39 @@ const Login = () => {
   }
 
   return (
-    <div className="login-page">
-      <div className='container'>
-        <div className="header1">
-          <div className="text">Login</div>
-          <div className="underline"></div>
-        </div>
-        <form onSubmit={loginHandler}>
-          <div className="inputs">
-            <div className="input">
-              <img src={email_icon} alt="" />
-              <input type="email" id="emaiid" placeholder='Email Id' onChange={(e) => changeHandler(e, 'username')} value={data.username} />
-            </div>
-
-            <div className="input">
-              <img src={password_icon} alt="" />
-              <input type="password" id="password" placeholder='Password' onChange={(e) => changeHandler(e, 'password')} value={data.password} />
-            </div>
-            <div className="forget-password"  onClick={() => navigate('/forgetpassword')} > Forget Password?</div>
-
-            <div className="submit-container">
-              {/* <div className={action === "Login" ? "submit gray" : "submit"} onClick={() => { setAction("Sign Up") }}>SignUp</div> */}
-
-              <button className="submit" type='submit'>Login</button>
-              <div className="submit" onClick={() => navigate('/signup')}>Register</div>
-            </div>
-            <div className="verify-email" onClick={verifyEmailHandler}> Verify Email</div>
+    <Base>
+      <div className="login-page">
+        <div className='container'>
+          <div className="header1">
+            <div className="text">Login</div>
+            <div className="underline"></div>
           </div>
-        </form>
+          <form onSubmit={loginHandler}>
+            <div className="inputs">
+              <div className="input">
+                <img src={email_icon} alt="" />
+                <input type="email" id="emaiid" placeholder='Email Id' onChange={(e) => changeHandler(e, 'username')} value={data.username} />
+              </div>
 
+              <div className="input">
+                <img src={password_icon} alt="" />
+                <input type="password" id="password" placeholder='Password' onChange={(e) => changeHandler(e, 'password')} value={data.password} />
+              </div>
+              <div className="forget-password" onClick={() => navigate('/forgetpassword')} > Forget Password?</div>
+
+              <div className="submit-container">
+                {/* <div className={action === "Login" ? "submit gray" : "submit"} onClick={() => { setAction("Sign Up") }}>SignUp</div> */}
+
+                <button className="submit" type='submit'>Login</button>
+                <div className="submit" onClick={() => navigate('/signup')}>Register</div>
+              </div>
+              <div className="verify-email" onClick={verifyEmailHandler}> Verify Email</div>
+            </div>
+          </form>
+
+        </div>
       </div>
-    </div>
-
+    </Base>
   );
 };
 export default Login; 

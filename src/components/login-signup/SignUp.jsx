@@ -10,6 +10,7 @@ import date_icon from '/dob.svg'
 import { useNavigate } from 'react-router-dom'
 import { signIn } from '../../Services/UserService'
 import { toast } from 'react-toastify'
+import Base from '../../components/Base/Base'
 
 const Signup = () => {
 
@@ -51,7 +52,7 @@ const Signup = () => {
             console.log(response)
             console.log("SUccess log")
             toast.success("Email registeration OTP has sent to your email id..!")
-            navigate('/verify-otp', { state: { from: "SignUp"}});
+            navigate('/verify-otp', { state: { from: "SignUp" } });
 
         }).catch((error) => {
             console.log(error)
@@ -111,78 +112,79 @@ const Signup = () => {
     }
 
     return (
-        <div className="login-page">
-            <div className='container-signup'>
-                <div className="header1">
-                    <div className="text">Register</div>
-                    <div className="underline"></div>
-                </div>
-                <form onSubmit={signinHandler}>
-                    <div className="inputs">
-                        <div className="input">
-                            <img src={user_icon} alt="" />
-                            <input type="text" placeholder='enter first name' onChange={(e) => changeHandler(e, 'firstName')} value={data.firstName} />
-                        </div>
+        <Base>
+            <div className="login-page">
+                <div className='container-signup'>
+                    <div className="header1">
+                        <div className="text">Register</div>
+                        <div className="underline"></div>
+                    </div>
+                    <form onSubmit={signinHandler}>
+                        <div className="inputs">
+                            <div className="input">
+                                <img src={user_icon} alt="" />
+                                <input type="text" placeholder='enter first name' onChange={(e) => changeHandler(e, 'firstName')} value={data.firstName} />
+                            </div>
 
-                        <div className="input">
-                            <img src={user_icon} alt="" />
-                            <input type="text" placeholder='enter middle name' onChange={(e) => changeHandler(e, 'middleName')} value={data.middleName} />
-                        </div>
+                            <div className="input">
+                                <img src={user_icon} alt="" />
+                                <input type="text" placeholder='enter middle name' onChange={(e) => changeHandler(e, 'middleName')} value={data.middleName} />
+                            </div>
 
-                        <div className="input">
-                            <img src={user_icon} alt="" />
-                            <input type="text" placeholder='enter last name' onChange={(e) => changeHandler(e, 'lastName')} value={data.lastName} />
-                        </div>
+                            <div className="input">
+                                <img src={user_icon} alt="" />
+                                <input type="text" placeholder='enter last name' onChange={(e) => changeHandler(e, 'lastName')} value={data.lastName} />
+                            </div>
 
-                        <div className="input">
-                            <img src={email_icon} alt="" />
-                            <input type="email" placeholder='enter email id' onChange={(e) => changeHandler(e, 'emailId')} value={data.emailId} />
-                        </div>
-                        <div className="input">
-                            <img src={phone_icon} alt="" />
-                            <input type="text" placeholder='Phone number' onChange={(e) => changeHandler(e, 'phoneNo')} value={data.phoneNo} />
-                        </div>
+                            <div className="input">
+                                <img src={email_icon} alt="" />
+                                <input type="email" placeholder='enter email id' onChange={(e) => changeHandler(e, 'emailId')} value={data.emailId} />
+                            </div>
+                            <div className="input">
+                                <img src={phone_icon} alt="" />
+                                <input type="text" placeholder='Phone number' onChange={(e) => changeHandler(e, 'phoneNo')} value={data.phoneNo} />
+                            </div>
 
-                        <div className="input">
-                            <img src={date_icon} alt="" />
-                            <input type="date" onChange={(e) => changeHandler(e, 'dob')} value={data.dob} />
-                        </div>
+                            <div className="input">
+                                <img src={date_icon} alt="" />
+                                <input type="date" onChange={(e) => changeHandler(e, 'dob')} value={data.dob} />
+                            </div>
 
-                        <div className="input">
-                            <img src={password_icon} alt="" />
-                            
+                            <div className="input">
+                                <img src={password_icon} alt="" />
+
                                 <input type="radio" name="gender" value="Male" onChange={(e) => changeHandler(e, 'gender')} checked={data.gender === "Male"} /> Male
-                               
-                      
-                         
+
+
+
                                 <input type="radio" name="gender" value="Female" onChange={(e) => changeHandler(e, 'gender')} checked={data.gender === "Female"} />
                                 Female
-                           
-                               <input type="radio" name="gender" value="Other" onChange={(e) => changeHandler(e, 'gender')} checked={data.gender === "Other"} />
+
+                                <input type="radio" name="gender" value="Other" onChange={(e) => changeHandler(e, 'gender')} checked={data.gender === "Other"} />
                                 Other
-                            
-                        </div>
+
+                            </div>
 
 
-                        <div className="input">
-                            <img src={password_icon} alt="" />
-                            <input type="password" placeholder='enter password' onChange={(e) => changeHandler(e, 'password')} value={data.password} />
-                        </div>
+                            <div className="input">
+                                <img src={password_icon} alt="" />
+                                <input type="password" placeholder='enter password' onChange={(e) => changeHandler(e, 'password')} value={data.password} />
+                            </div>
 
-                        <div className="input">
-                            <img src={password_icon} alt="" />
-                            <input type="password" placeholder='Confirm password' onChange={(e) => changeHandler(e, 'cpassword')} value={data.cpassword} />
-                        </div>
+                            <div className="input">
+                                <img src={password_icon} alt="" />
+                                <input type="password" placeholder='Confirm password' onChange={(e) => changeHandler(e, 'cpassword')} value={data.cpassword} />
+                            </div>
 
-                        <div className="submit-container">
-                            <button className="submit" type='submit'>Register</button>
-                            <div className="submit" onClick={() => navigate('/login')}>Login</div>
+                            <div className="submit-container">
+                                <button className="submit" type='submit'>Register</button>
+                                <div className="submit" onClick={() => navigate('/login')}>Login</div>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-
+        </Base>
     );
 }
 

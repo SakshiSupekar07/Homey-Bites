@@ -1,31 +1,36 @@
-import { myAxios } from "./Helper";
+import { myAxios, myAxiosAuth } from "./Helper";
 
-export const logIn = (user) => {
-    return myAxios.post('/api/v1/auth/login', user)
+export const getCurrentUser = async () => {
+    return await myAxiosAuth.get('/api/v1/users/current-user')
     .then((response) => response.data);
 }
 
-export const signIn = (user) => {
-    return myAxios.post('/api/v1/auth/register', user)
+export const logIn = async (user) => {
+    return await myAxios.post('/api/v1/auth/login', user)
+    .then((response) => response.data);
+}
+
+export const signIn = async (user) => {
+    return await myAxios.post('/api/v1/auth/register', user)
     .then((response) => response.data)
 }
 
-export const VerifyEmail = (otp, username) => {
-    return myAxios.post('/api/v1/auth/verify-email?otp='+otp+'&username='+username)
+export const VerifyEmail = async (otp, username) => {
+    return await myAxios.post('/api/v1/auth/verify-email?otp='+otp+'&username='+username)
     .then((response) => response.data)
 }
 
-export const VerifyOtp = (otp, username) => {
-    return myAxios.post('/api/v1/auth/verify-otp?otp='+otp+'&username='+username)
+export const VerifyOtp = async (otp, username) => {
+    return await myAxios.post('/api/v1/auth/verify-otp?otp='+otp+'&username='+username)
     .then((response) => response.data)
 }
 
-export const sendOtp = (username) => {
-    return myAxios.post('/api/v1/auth/resend-otp?username='+username)
+export const sendOtp = async (username) => {
+    return await myAxios.post('/api/v1/auth/resend-otp?username='+username)
     .then((response) => response.data)
 } 
 
-export const forgetpassword = (username) => {
-    return myAxios.post('/api/v1/auth/forget-password?username='+username)  
+export const forgetpassword = async (username) => {
+    return await myAxios.post('/api/v1/auth/forget-password?username='+username)  
     .then((response) => response.data)
 }
