@@ -2,11 +2,12 @@ import { useLocation } from "react-router-dom";
 import "./MenuItem.css";
 import { getMenu } from "../../Services/MenuService";
 import { useEffect, useState } from "react";
+import Base from '../../components/Base/Base'
 
 const MenuItem = () => {
    
 
-    // const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
 
     const location = useLocation();
     const itemId = location.state?.itemId;
@@ -44,7 +45,7 @@ const MenuItem = () => {
                     </div>
                 </div>
             </div>
-            </div>
+        </Base>
       
     )
 };

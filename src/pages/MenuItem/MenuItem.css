@@ -1,6 +1,6 @@
 /* Main container - Full width, aligns image and content side by side */
 .menu-item-container {
-    margin-top: 100px;
+    /* margin-top: 100px; */
     display: flex;
     align-items: center; /* Aligns image and text side by side */
     justify-content: flex-start; /* Image sticks to the left */
