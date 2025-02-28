@@ -42,7 +42,7 @@ const Fooddisplay = ({ category }) => {
               <img src={item.imageUrl} alt={item.menuName} className="food-image" />
               <div className="food-info">
                 <h3>{item.menuName}</h3>
-                <p className="food-de+scription">{item.description}</p>
+                <p className="food-description">{item.description}</p>
               </div>
             </div>
           ))}

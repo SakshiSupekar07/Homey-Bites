@@ -1,7 +1,7 @@
 /* Ensure full-page background applies only to login */
 .login-page {
     /* Your background color */
-    min-height: 70vh;         
+    min-height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +19,8 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 500px;
-    min-height: 450px; /* Set a minimum height to balance both Login & Signup */
+    min-height: 450px;
+    /* Set a minimum height to balance both Login & Signup */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,7 +33,8 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 500px;
-    min-height: 450px; /* Set a minimum height to balance both Login & Signup */
+    min-height: 450px;
+    /* Set a minimum height to balance both Login & Signup */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,7 +52,7 @@
 
 
 
- /* .container{
+/* .container{
     display:flex;
     flex-direction: column;
     margin: auto;
@@ -59,7 +61,7 @@
     background: #fff;
     padding-bottom:30px ;
 }  */
-.header1{
+.header1 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -67,14 +69,15 @@
     width: 100%;
     margin-top: -508px;
 }
-.text
-{
- color:#FFA54F ;
-  font-size: 48px;
-  font-weight: 700;
- 
-  margin-top: 500px;
+
+.text {
+    color: #FFA54F;
+    font-size: 48px;
+    font-weight: 700;
+
+    margin-top: 500px;
 }
+
 /* .underline
 {
     width:61px;
@@ -82,14 +85,14 @@
     background: #3c009d;
     border-radius: 9px;
 } */
-.inputs
-{
-   
-    display:flex;
+.inputs {
+
+    display: flex;
     flex-direction: column;
-    gap:10px;
-    
+    gap: 10px;
+
 }
+
 /* .input{
     display:flex;
     align-items: center;
@@ -108,14 +111,15 @@
     background: #eee;
     padding: 10px;
     border-radius: 5px;
-    width: 100%;  /* Ensure it fits within the container */
+    width: 100%;
+    /* Ensure it fits within the container */
     box-sizing: border-box;
-     /* Prevents extra width issues */
+    /* Prevents extra width issues */
 }
 
 
-.input img{
-    margin:0px 30px;
+.input img {
+    margin: 0px 30px;
 }
 
 /* .input input{
@@ -129,46 +133,52 @@
 
 } */
 .input input {
-    flex: 1; /* Makes input take up available space */
+    flex: 1;
+    /* Makes input take up available space */
     border: none;
     outline: none;
     background: transparent;
     padding: 8px;
     font-size: 16px;
-    width: 100%;  /* Ensure it does not exceed parent */
+    width: 100%;
+    /* Ensure it does not exceed parent */
     box-sizing: border-box;
-    margin-right: 0px; 
+    margin-right: 0px;
 }
-.forget-password{
-    margin-left: 319px;
+
+.forget-password {
+    margin: auto 5px;
     margin-bottom: 10px;
-    color:#797979;
+    color: #797979;
     font-size: 15px;
     cursor: pointer;
 }
-.forget-password:hover{
+
+.forget-password:hover {
     color: #000000;
 }
-.forget-password span{
-    color:#4c00b4;
-    cursor:pointer;
+
+.forget-password span {
+    color: #4c00b4;
+    cursor: pointer;
 }
-.submit-container
-{
-    display:flex;
+
+.submit-container {
+    display: flex;
     justify-content: space-between;
     margin-top: 20px;
-    
+
 }
-.submit{
+
+.submit {
     border: none;
     margin: 2px;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    width:220px;
-    height:59px;
-    color:#fff;
+    width: 220px;
+    height: 59px;
+    color: #fff;
     background-color: #ff8b1c;
     border-radius: 50px;
     font-size: 19px;
@@ -176,16 +186,17 @@
     cursor: pointer;
 }
 
-.submit:hover{
-    background-color:#FFA54F;
+.submit:hover {
+    background-color: #FFA54F;
 }
 
 
-.gray{
+.gray {
     background: #EAEAEA;
-    color:#676767;
+    color: #676767;
 }
-.icon{
+
+.icon {
     background-color: lightgray;
 
 }
@@ -195,11 +206,17 @@
     font-size: 14px;
     margin-top: 5px;
 }
+
 .input input {
     padding: 10px;
 }
 
- 
-
-
- 
+/* @media (max-width: 480px) {
+    .forget-password {
+        margin-left: 190px;
+        margin-bottom: 10px;
+        color: #797979;
+        font-size: 15px;
+        cursor: pointer;
+    }
+} */
