@@ -4,6 +4,8 @@ import facebook_icon from '../assets/util/facebook_icon.png';
 import linkedin_icon from '../assets/util/linkedin_icon.png';
 import twitter_icon from '../assets/util/twitter_icon.png';
 import shopping_cart from  '../assets/util/shopping_cart.png';
+import trash from '../assets/util/trash.png';
+import ruppee from '../assets/util/ruppee.png';
 
 
 
@@ -28,6 +30,8 @@ export const assets = {
   homeybites,
   profile_image,
   shopping_cart,
+  trash,
+  ruppee,
 };
 
 export const food_list = [

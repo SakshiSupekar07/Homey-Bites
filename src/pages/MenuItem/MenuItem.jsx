@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 const MenuItem = () => {
     const [data, setData] = useState([]);
 
+    const [data, setData] = useState([]);
+
     const location = useLocation();
     const itemId = location.state?.itemId;
 
@@ -40,7 +42,7 @@ const MenuItem = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Base>
     )
 };
 

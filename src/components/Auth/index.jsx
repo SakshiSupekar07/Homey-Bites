@@ -1,23 +1,21 @@
 export const isLoggedIn = () => {
-    let data = localStorage.getItem("data");
+    let data = localStorage.getItem("authToken");
     if(data != null) return true;
     else return false;
 };
 
 export const doLogin = (data,next) => {
-    localStorage.setItem("data", JSON.stringify(data));
+    localStorage.setItem("authToken", data.token);
     next()
 };
 
 export const doLogout = (next) => {
-    localStorage.removeItem("data");
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("cartData");
+    localStorage.removeItem("userData");
     next()
 }
 
-export const getCurrentUser = () => {
-    if(isLoggedIn()) {
-        return JSON.parse(localStorage.getItem("data"));
-    }else {
-        return undefined;
-    }
-};
+export const getAuthToken = () => {
+    return localStorage.getItem("authToken");
+}

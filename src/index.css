@@ -10,7 +10,6 @@
 }
 body{
   min-height:100vh;
-
 }
 a{
   text-decoration:none;
@@ -19,15 +18,15 @@ a{
 .app
 {
   width:100%;
-  /* margin:auto; */
+  margin:auto;
   background-color: #eee;
 }
 
-.app-components
+/* .app-components
 {
   width: 75%;
   margin: auto;
-}
+} */
 
 .custom-toast-container {
   margin-top: 80px !important;

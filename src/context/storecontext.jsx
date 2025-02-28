@@ -5,7 +5,7 @@ import { food_list as initialFoodList, breakfast_list as initialBreakfastList } 
 export const StoreContext = createContext();
 
 // Context Provider Component
-const StoreContextProvider = ({ children }) => {
+export const StoreContextProvider = ({ children }) => {
   // State to manage food_list and breakfast_list
   const [food_list, setFoodList] = useState(initialFoodList);
   const [breakfast_list, setBreakfastList] = useState(initialBreakfastList);

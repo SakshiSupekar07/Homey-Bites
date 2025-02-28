@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
 import { forgetpassword, sendOtp } from '../../Services/UserService';
 import { toast } from 'react-toastify';
+import Base from '../../components/Base/Base'
 
 const ForgetPassword = () => {
   const [data, setData] = useState({
@@ -39,7 +40,7 @@ const ForgetPassword = () => {
   };
 
   return (
-    <>
+    <Base>
       <div className="login-page">
         <div className='container'>
           <div className="header1">
@@ -61,7 +62,7 @@ const ForgetPassword = () => {
 
         </div>
       </div>
-    </>
+    </Base>
   );
 };
 

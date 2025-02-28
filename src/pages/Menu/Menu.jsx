@@ -1,26 +1,33 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './Menu.css'
-import { StoreContext } from '../../context/storecontext';
 import { fetchMenu, fetchMenuByType } from '../../Services/MenuService';
+import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../../context/CartProvider';
+import { addItemToCart } from '../../Services/AddToCartService';
+import { isLoggedIn } from '../../components/Auth';
+import { toast } from 'react-toastify';
+import { assets } from '../../assets/assets';
+import { UserContext } from '../../context/UserProvider';
+import Base from '../../components/Base/Base';
 
-const Menu = ({ }) => {
+const Menu = () => {
 
     const [data, setData] = useState([]);
     const [type, setType] = useState('Breakfast');
-    const { food_list } = useContext(StoreContext);
+    const { cartData } = useContext(CartContext);
+    const { userData } = useContext(UserContext)
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchMenu().then((response) => {
             // response.
             //console.log(response.data[0])
-            console.log(response)
             setData(response)
         })
             // .then((response))
             //   .then((data) => setData(data))
             .catch((error) => console.error("Error fetching data:", error));
-
-        console.log(data)
     }, []);
 
     const getMenuByType = (type) => {
@@ -33,7 +40,22 @@ const Menu = ({ }) => {
         })
     }
 
+    const addToCart = (id) => {
+        if(isLoggedIn() && userData != null){
+            addItemToCart(userData.userId, id).then((response)=>{
+                console.log(response)
+                toast.success("Item added to cart successfully..!")
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
+        else {
+            toast.error("Please login to add items to cart..")
+        }
+    }
+
     return (
+        <Base>
         <div className='menu-container'>
             <div className="menu-header">
                 <div className="menu-display" id="menu-display">
@@ -52,9 +74,9 @@ const Menu = ({ }) => {
                                 <div className="menu-info">
                                     <h3>{data.menuName}</h3>
                                     <p className="menu-description">{data.description}</p>
-                                    <p className="menu-price">Price: {data.price}</p>
+                                    <p className="menu-price">Price:<img src={assets.ruppee} className='ruppee-img' /> {data.price}</p>
                                     <div className='menu-buttons'>
-                                        <button className="add-to-cart">Add to Cart</button>
+                                        <button onClick={() => addToCart(data.menuId)} className="add-to-cart">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +85,7 @@ const Menu = ({ }) => {
                 </div>
             </div>
         </div>
-
+        </Base>
     );
 };
 

@@ -19,7 +19,7 @@ const Navbar = ({ setShowLogin }) => {
 
   useEffect(() => {
     setLogin(isLoggedIn())
-    console.log("logged innnn")
+    console.log("logged innnn"+isLoggedIn())
   }, [login])
 
 
@@ -90,7 +90,7 @@ const Navbar = ({ setShowLogin }) => {
           }
         </ul>
       </nav>
-      <div className='shopping_cart'>
+      <div onClick={()=> navigate('/cart')} className={login ? 'shopping_cart' : 'cart'}>
         {
           login && (
               <img src={assets.shopping_cart} alt="" />

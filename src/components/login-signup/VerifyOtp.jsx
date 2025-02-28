@@ -4,6 +4,7 @@ import password_icon from '/password.png'
 import { toast } from 'react-toastify'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { VerifyEmail } from '../../Services/UserService'
+import Base from '../../components/Base/Base'
 
 const VerifyOtp = () => {
 
@@ -76,7 +77,8 @@ const VerifyOtp = () => {
   }
 
   return (
-    <body className="login-page">
+    <Base>
+    <div className="login-page">
       <div className='container'>
         <div className="header1">
           <div className="text">Verify Email </div>
@@ -96,8 +98,8 @@ const VerifyOtp = () => {
         </form>
 
       </div>
-    </body>
-
+    </div>
+    </Base>
   );
 };
 export default VerifyOtp;

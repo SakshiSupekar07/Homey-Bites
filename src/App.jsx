@@ -22,8 +22,7 @@ const App = () => {
 
     <>
       <div className='app'>
-        <Navbar />
-        <div className='app-components'>
+        {/* <Navbar /> */}
           <ToastContainer position='top-center' className="custom-toast-container" />
           <Routes>
             <Route path='/' element={<Home />} />
@@ -37,9 +36,7 @@ const App = () => {
             <Route path='/menu/item' element={<MenuItem/>} />
            
           </Routes>
-          
-        </div>
-        <Footer/>
+        {/* <Footer/> */}
       </div>
 
 
