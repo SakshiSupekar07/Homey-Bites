@@ -111,7 +111,7 @@ const cart = () => {
                               <h3>{item?.menuItem?.menuName}</h3>
                               <p>{item?.menuItem?.description}</p>
                               <p><img src={assets.ruppee} className='ruppee-img' />{item?.menuItem?.price}</p>
-                              <div class="custom-select">
+                              <div className="custom-select">
                                 <select value={quantity[item?.cId] || ""} onChange={(event) => handleSelectChange(item?.cId, event)}>
                                   <option value="1">1</option>
                                   <option value="2">2</option>
@@ -139,7 +139,9 @@ const cart = () => {
                   </div>
 
                 </div>
-                <button onClick={() => removeAllItem(item?.user?.userId)} className='remove-all'>remove All</button>
+                <button onClick={() => removeAllItem(userData.userId
+
+                )} className='remove-all'>Remove All</button>
               </>
             )
           }
