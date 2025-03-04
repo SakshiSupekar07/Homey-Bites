@@ -15,7 +15,7 @@ export const UserProvider = ({ children }) => {
 
     useEffect(() => {
         getUser();
-    }, [userData    ])
+    }, [])
 
     const getUser = async () => {
         if (isLoggedIn()) {

@@ -9,6 +9,7 @@
 .cart-data {
     background-color: white;
     margin: 10px 0;
+    min-height: 540px;
 }
 
 .cart-header {
