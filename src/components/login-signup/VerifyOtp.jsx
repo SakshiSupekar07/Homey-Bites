@@ -74,6 +74,19 @@ const VerifyOtp = () => {
         toast.error(error.response?.data?.message)
       })
     }
+    else if(location.state?.from === "Login"){
+      VerifyEmail(data.otp, localStorage.getItem("username")).then((response) => {
+        localStorage.removeItem("username")
+        console.log(response)
+        console.log("SUccess log")
+        toast.success("Email verified successfully..! Please Login")
+        navigate('/login')
+
+      }).catch((error) => {
+        console.log(error)
+        toast.error(error.response?.data?.message)
+      })
+    }
   }
 
   return (

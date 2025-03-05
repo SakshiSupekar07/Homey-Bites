@@ -40,10 +40,11 @@ const Login = () => {
       console.log(response)
       console.log("success")
       toast.success("Email verification OTP sent successfully..!")
-      navigate('/verify-otp')
+      localStorage.setItem("username", data.username);
+      navigate('/verify-otp', { state: { from: "Login" } })
 
     }).catch((error) => {
-      console.log(error)
+      // console.log(error)
       console.log("error log")
     })
   }
