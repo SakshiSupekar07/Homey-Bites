@@ -14,7 +14,7 @@ export const cartProvider = ({ children }) => {
             await fetchUserCart(userData.userId).then((response) => {
                 setCartData(response.data);
             }).catch((error) => {
-                console.log(error)
+                console.log(error);
             })
         }
     }
