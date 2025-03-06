@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './cart.css'
-import { UserContext } from '../../context/UserProvider';
-import { CartContext } from '../../context/CartProvider';
-import { isLoggedIn } from '../../components/Auth';
+import { getAuthToken, getUserInfo, isLoggedIn } from '../../components/Auth';
 import { fetchUserCart, removeAllItemFromCart, removeItemFromCart, updateQuantity } from '../../Services/AddToCartService';
 import { assets } from '../../assets/assets';
 import { toast } from 'react-toastify';
@@ -10,19 +8,19 @@ import Base from '../../components/Base/Base'
 
 const cart = () => {
 
-  const { userData } = useContext(UserContext);
-  // const { cartData } = useContext(CartContext);
+  const user = getUserInfo();
   const [cartData, setCartData] = useState([]);
   const [reload, setReload] = useState(false);
   const [quantity, setQuantity] = useState({});
   const [cartTotal, setCartTotal] = useState();
 
+
   const getCart = () => {
-    if (userData != null) {
+    if (user != null) {
       //fetching cart data
-      fetchUserCart(userData.userId).then((response) => {
+      fetchUserCart(user.userId).then((response) => {
         setCartData(response.data);
-        console.log(response.data)
+        //console.log(response.data)
 
         //intializing quantity
         const initialSelection = {};
@@ -30,6 +28,8 @@ const cart = () => {
           initialSelection[item.cId] = item?.quantity;
         });
         setQuantity(initialSelection);
+
+        console.log(getAuthToken())
 
         // intializing cart total
         let total = 0;
@@ -127,7 +127,7 @@ const cart = () => {
                           </div>
                         </div>
                         <div className='item-total'>
-                          <p>Subtotal:<img src={assets.ruppee} className='ruppee-img' /> {item?.totalPrice}</p>
+                          <p>Total:<img src={assets.ruppee} className='ruppee-img' /> {item?.totalPrice}</p>
                         </div>
                       </div>
                     ))}
@@ -139,7 +139,7 @@ const cart = () => {
                   </div>
 
                 </div>
-                <button onClick={() => removeAllItem(userData.userId
+                <button onClick={() => removeAllItem(user.userId
 
                 )} className='remove-all'>Remove All</button>
               </>

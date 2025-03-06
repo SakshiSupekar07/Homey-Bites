@@ -1,10 +1,14 @@
 import axios from "axios";
 import { getAuthToken } from "../components/Auth";
 
-export const BASE_URL = 'https://homeybites.onrender.com';
+export const BASE_URL = 'http://localhost:8080';
 
 export const myAxios = axios.create({
-    baseURL: BASE_URL
+    baseURL: BASE_URL,
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+    }
 })
 
 export const myAxiosAuth = axios.create({

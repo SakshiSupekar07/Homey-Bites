@@ -6,6 +6,7 @@ import twitter_icon from '../assets/util/twitter_icon.png';
 import shopping_cart from  '../assets/util/shopping_cart.png';
 import trash from '../assets/util/trash.png';
 import ruppee from '../assets/util/ruppee.png';
+import loading from '../assets/util/loading.svg'
 
 
 
@@ -32,6 +33,7 @@ export const assets = {
   shopping_cart,
   trash,
   ruppee,
+  loading,
 };
 
 export const food_list = [

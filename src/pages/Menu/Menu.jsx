@@ -2,39 +2,30 @@ import React, { useState, useContext, useEffect } from 'react';
 import './Menu.css'
 import { fetchMenu, fetchMenuByType } from '../../Services/MenuService';
 import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../../context/CartProvider';
 import { addItemToCart } from '../../Services/AddToCartService';
-import { isLoggedIn } from '../../components/Auth';
+import { getUserInfo, isLoggedIn } from '../../components/Auth';
 import { toast } from 'react-toastify';
 import { assets } from '../../assets/assets';
-import { UserContext } from '../../context/UserProvider';
 import Base from '../../components/Base/Base';
 
 const Menu = () => {
 
     const [data, setData] = useState([]);
     const [type, setType] = useState('Breakfast');
-    const { cartData } = useContext(CartContext);
-    const { userData } = useContext(UserContext)
+    const userData = getUserInfo();
 
     const navigate = useNavigate();
 
     useEffect(() => {
         fetchMenu().then((response) => {
-            // response.
-            //console.log(response.data[0])
             setData(response)
         })
-            // .then((response))
-            //   .then((data) => setData(data))
             .catch((error) => console.error("Error fetching data:", error));
     }, []);
 
     const getMenuByType = (type) => {
         console.log(type)
         fetchMenuByType(type).then((response) => {
-            // response.
-            //console.log(response.data[0])
             console.log(response)
             setData(response)
         })

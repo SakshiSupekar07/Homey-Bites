@@ -14,8 +14,9 @@
  .food-scroll-container {
   width: 100%; /* Full width */
   overflow-x: auto; /* Enable horizontal scrolling */
-  padding: 10px;
+  padding: 8px 8px;
   white-space: nowrap; 
+  background-color: #eee;
 } 
 
 /* Grid for 3 Cards Per Row */
