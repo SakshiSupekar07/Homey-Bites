@@ -1,13 +1,13 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Fooddisplay.css";
-import { StoreContext } from "../../context/storecontext";
+
 import { fetchMenuByType } from "../../Services/MenuService";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Fooddisplay = ({ category }) => {
   const [thaliData, setThaliData] = useState([]);
   const [breakfastData, setBreakfastData] = useState([]);
-  const { food_list } = useContext(StoreContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
