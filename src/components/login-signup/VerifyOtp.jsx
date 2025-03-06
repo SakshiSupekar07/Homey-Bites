@@ -47,12 +47,10 @@ const VerifyOtp = () => {
     if (location.state?.from === "ForgetPassword") {
 
       VerifyEmail(data.otp, localStorage.getItem("username")).then((response) => {
-        localStorage.removeItem("username")
-
         console.log(response)
         console.log("SUccess log")
         toast.success("Email verified successfully..! Please reset your password")
-        navigate('/reset-password')
+        navigate('/resetpassword')
 
       }).catch((error) => {
         console.log(error)

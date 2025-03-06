@@ -34,3 +34,9 @@ export const forgetpassword = async (username) => {
     return await myAxios.post('/api/v1/auth/forget-password?username='+username)  
     .then((response) => response.data)
 }
+
+export const resetPass = async (data, username) => {
+    console.log(data);
+    return await myAxios.post('/api/v1/auth/reset-pass?emailId='+username, data)  
+    .then((response) => response.data)
+}

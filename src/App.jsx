@@ -14,6 +14,7 @@ import VerifyOtp from './components/login-signup/VerifyOtp'
 import ForgetPassword from './components/login-signup/forgetpassword'
 import Menu from './pages/Menu/Menu'
 import MenuItem from './pages/MenuItem/MenuItem'
+import ResetPassword from './components/login-signup/ResetPassword'
 
 
 
@@ -32,6 +33,7 @@ const App = () => {
             <Route path='/signup' element={<SignUp />} />
             <Route path='/verify-otp' element={<VerifyOtp />} />
             <Route path='/forgetpassword' element={<ForgetPassword />} />
+            <Route path='/resetpassword' element={<ResetPassword />} />
             <Route path='/menu' element={<Menu />} />
             <Route path='/menu/item' element={<MenuItem/>} />
            
