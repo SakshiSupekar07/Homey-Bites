@@ -37,7 +37,7 @@ const Login = () => {
       toast.error("Please enter email id to send OTP")
     }
     sendOtp(data.username).then((response) => {
-      console.log(response)
+      // console.log(response)
       console.log("success")
       toast.success("Email verification OTP sent successfully..!")
       localStorage.setItem("username", data.username);
@@ -85,8 +85,6 @@ const Login = () => {
 
       // save data to local storage
       doLogin(response, () => {
-        console.log("data stored in local storage")
-
         //redirect
         navigate('/')
       })
