@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Fooddisplay.css";
 import { fetchMenuByType } from "../../Services/MenuService";
 import { Navigate, useNavigate } from "react-router-dom";
