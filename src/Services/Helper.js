@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getAuthToken } from "../components/Auth";
 
-export const BASE_URL = 'https://homeybites.onrender.com'; 
+export const BASE_URL = 'http://localhost:8080'; 
  
 export const myAxios = axios.create({
     baseURL: BASE_URL,
@@ -17,9 +17,17 @@ export const myAxios = axios.create({
 //   },
 // })
 
+const excludedEndpoints = [
+  "/api/v1/auth"
+];
+
+
 myAxios.interceptors.request.use((config)=>{
   const token = getAuthToken();
-  if(token && ((config.url?.includes("/api/v1/auth")) || (config.method !== "get"))) {
+
+  const isExcluded = excludedEndpoints.some(endpoint => config.url.includes(endpoint));
+
+  if(token && (!isExcluded || (config.method !== "get"))) {
       config.headers.Authorization = `Bearer ${token}`;
   }
   return config;

@@ -29,7 +29,6 @@ const Signup = () => {
     })
 
     useEffect(() => {
-        console.log(data);
         localStorage.setItem("username", data.emailId);
     }, [data])
 
@@ -49,7 +48,6 @@ const Signup = () => {
 
         //sending data to backend
         signIn(data).then((response) => {
-            console.log(response)
             console.log("SUccess log")
             toast.success("Email registeration OTP has sent to your email id..!")
             navigate('/verify-otp', { state: { from: "SignUp" } });

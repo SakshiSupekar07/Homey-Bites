@@ -61,8 +61,6 @@ const VerifyOtp = () => {
       //sending data to backend
       VerifyEmail(data.otp, localStorage.getItem("username")).then((response) => {
         localStorage.removeItem("username")
-
-        console.log(response)
         console.log("SUccess log")
         toast.success("Registeration successfully..! Please Login")
         navigate('/login')
@@ -75,7 +73,6 @@ const VerifyOtp = () => {
     else if(location.state?.from === "Login"){
       VerifyEmail(data.otp, localStorage.getItem("username")).then((response) => {
         localStorage.removeItem("username")
-        console.log(response)
         console.log("SUccess log")
         toast.success("Email verified successfully..! Please Login")
         navigate('/login')

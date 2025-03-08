@@ -80,7 +80,6 @@ const Login = () => {
 
     //sending data to backend
     logIn(data).then((response) => {
-      console.log(response)
       console.log("SUccess log")
 
       // save data to local storage
