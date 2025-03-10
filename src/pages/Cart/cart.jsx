@@ -53,7 +53,7 @@ const cart = () => {
       removeItemFromCart(cartId).then((response) => {
         console.log(response)
         setReload(!reload)
-        toast.success("menu item removed successfully..!")
+        toast.success("Menu item removed successfully..!")
       }).catch((error) => {
         console.log(error)
       })
