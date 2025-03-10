@@ -1,7 +1,7 @@
-import { myAxios, myAxiosAuth } from "./Helper";
+import { myAxios } from "./Helper";
 
 export const getCurrentUser = async () => {
-    return await myAxiosAuth.get('/api/v1/users/current-user')
+    return await myAxios.get('/api/v1/users/current-user')
     .then((response) => response.data);
 }
 

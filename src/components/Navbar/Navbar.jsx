@@ -19,7 +19,6 @@ const Navbar = ({ setShowLogin }) => {
 
   useEffect(() => {
     setLogin(isLoggedIn())
-    console.log("logged innnn"+isLoggedIn())
   }, [login])
 
 

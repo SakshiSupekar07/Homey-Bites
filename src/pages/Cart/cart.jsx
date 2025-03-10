@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './cart.css'
-import { getAuthToken, getUserInfo, isLoggedIn } from '../../components/Auth';
+import { getUserInfo } from '../../components/Auth';
 import { fetchUserCart, removeAllItemFromCart, removeItemFromCart, updateQuantity } from '../../Services/AddToCartService';
 import { assets } from '../../assets/assets';
 import { toast } from 'react-toastify';
@@ -20,7 +20,6 @@ const cart = () => {
       //fetching cart data
       fetchUserCart(user.userId).then((response) => {
         setCartData(response.data);
-        //console.log(response.data)
 
         //intializing quantity
         const initialSelection = {};
@@ -28,8 +27,6 @@ const cart = () => {
           initialSelection[item.cId] = item?.quantity;
         });
         setQuantity(initialSelection);
-
-        console.log(getAuthToken())
 
         // intializing cart total
         let total = 0;

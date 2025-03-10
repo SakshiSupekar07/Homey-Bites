@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Fooddisplay.css";
-
 import { fetchMenuByType } from "../../Services/MenuService";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Fooddisplay = ({ category }) => {
   const [thaliData, setThaliData] = useState([]);
   const [breakfastData, setBreakfastData] = useState([]);
-
   const navigate = useNavigate();
 
   useEffect(() => {
