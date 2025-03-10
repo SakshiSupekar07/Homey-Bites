@@ -36,7 +36,7 @@ const MenuItem = () => {
                 })
             }
             else {
-                toast.error("Please login to add items to cart..")
+                toast.error("Please login to add items to cart..");
             }
         }
 

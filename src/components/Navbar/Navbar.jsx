@@ -41,7 +41,7 @@ const Navbar = ({ setShowLogin }) => {
 
   const handleToggle = () => {
     setShowMenu(!showMenu);
-    console.log(showMenu)
+    console.log(showMenu);
   }
 
   return (
@@ -54,6 +54,8 @@ const Navbar = ({ setShowLogin }) => {
           <Link to='/menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</Link>
           {/* <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</a>   */}
           <a href='#' onClick={() => setMenu("about")} className={menu === "about" ? "active" : ""}>About</a>
+          <Link to='/subscription' onClick={() => setMenu("subscription")} className={menu === "subscription" ? "active" : ""}>Subscription</Link>
+
           {/* <a href='#Footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact Us</a> */}
           {
             login && (

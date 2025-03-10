@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import './cart.css'
+import React, { useEffect, useState } from 'react';
+import './cart.css';
 import { getUserInfo } from '../../components/Auth';
 import { fetchUserCart, removeAllItemFromCart, removeItemFromCart, updateQuantity } from '../../Services/AddToCartService';
 import { assets } from '../../assets/assets';
 import { toast } from 'react-toastify';
-import Base from '../../components/Base/Base'
+import Base from '../../components/Base/Base';
 
 const cart = () => {
 
