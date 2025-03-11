@@ -24,7 +24,7 @@ const App = () => {
 
     <>
       <div className='app'>
-        {/* <Navbar /> */}
+         <Navbar /> 
           <ToastContainer position='top-center' className="custom-toast-container" />
           <Routes>
             <Route path='/' element={<Home />} />

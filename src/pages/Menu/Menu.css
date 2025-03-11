@@ -1,5 +1,4 @@
 .menu-container {
-    /* margin-top: 100px; */
     width: 100%;
     height: 100%;
 }
@@ -39,49 +38,35 @@
     background-color: #ddd;
 }
 
-/* Grid for 3 Cards Per Row */
+/* Grid for Cards */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* 3 equal-width columns */
     gap: 20px;
-    /* Space between cards */
     justify-content: center;
-    /* Center the grid items */
+    width: 90%; /* Increase grid width */
+    margin: 0 auto;
 }
 
-/* Individual Card Styles
-.food-card {
+/* Card Styles */
+.menu-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.food-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-} */
-
-.menu-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* Ensures spacing between elements */
-    height: 100%;
-    /* Ensures the card takes full height */
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    transition: transform 0.3s;
 }
 
 .menu-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-
+}
 
 /* Image in Card */
 .menu-image {
@@ -94,12 +79,12 @@
 
 /* Card Content */
 .menu-info {
-    padding: 15px;
-    text-align: left;
     flex-grow: 1;
-    /* Pushes content upwards */
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    text-align: left;
 }
 
 .menu-info h3 {
@@ -122,21 +107,62 @@
 }
 
 .menu-buttons {
-    margin-top: auto; /* Ensures button stays at the bottom */
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     padding-top: 10px;
 }
 
-.menu-buttons button {
-    width: 140px;
-    padding: 10px 20px;
-    border: none;
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f3f4f6;
+    border-radius: 20px;
+    padding: 5px 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ff6600;
     border-radius: 50px;
-    background-color: #f9f9f9;
-    color: #333;
-    font-size: 16px;
+    color: white;
+    width: 100%;
+    border-radius: 5%;
+}
+
+.quantity-btn {
+    background-color: #ff7043;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.quantity-btn.decrement {
+    background-color: #d32f2f;
+}
+
+.quantity-value {
+    font-weight: bold;
+    width: 20px;
+    text-align: center;
+}
+
+.add-to-cart {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    cursor: pointer;
     transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #45a049;
 }
 
 .menu-buttons .add-to-cart {
@@ -164,26 +190,17 @@
 @media (max-width: 1000px) {
     .menu-grid {
         grid-template-columns: repeat(3, 1fr);
-        /* 3 cards per row */
     }
-
-
 }
 
 @media (max-width: 800px) {
     .menu-grid {
         grid-template-columns: repeat(2, 1fr);
-        /* 2 cards per row */
     }
-
-
 }
 
 @media (max-width: 480px) {
     .menu-grid {
         grid-template-columns: 1fr;
-        /* 1 card per row */
     }
-
-
 }
