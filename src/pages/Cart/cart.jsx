@@ -23,8 +23,10 @@ const cart = () => {
 
         //intializing quantity
         const initialSelection = {};
+        let totalCount = 0;
         (response.data).forEach((item) => {
           initialSelection[item.cId] = item?.quantity;
+          totalCount += 1;
         });
         setQuantity(initialSelection);
 

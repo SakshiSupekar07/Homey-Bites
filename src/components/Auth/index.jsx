@@ -25,3 +25,10 @@ export const getUserInfo = () => {
     if(isLoggedIn())
         return JSON.parse(localStorage.getItem("user"));
 }
+
+export const cartInfo = () => {
+    if(isLoggedIn())
+    {
+        
+    }
+}

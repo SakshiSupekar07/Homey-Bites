@@ -1,27 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import './Navbar.css'
-import { assets } from '../../assets/assets'
-
+import React, { useEffect, useState } from 'react';
+import './Navbar.css';
+import { assets } from '../../assets/assets';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { doLogout, isLoggedIn } from '../Auth';
 import { GiHamburgerMenu } from "react-icons/gi";
-import shopping_cart from '/shopping_cart.png';
-
+import { useCart } from  '../../pages/Cart/cartcontext';
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { cartCount } = useCart(); 
 
   const [profileOpen, setProfileOpen] = useState(false);
-
-  const [login, setLogin] = useState(false)
+  const [login, setLogin] = useState(false);
 
   useEffect(() => {
-    setLogin(isLoggedIn())
-  }, [login])
-
-
+    setLogin(isLoggedIn());
+  }, [login]);
 
   useEffect(() => {
     if (location.hash) {
@@ -34,33 +30,32 @@ const Navbar = ({ setShowLogin }) => {
 
   const logOut = () => {
     doLogout(() => {
-      setLogin(false)
-      navigate('/login')
-    })
-  }
+      setLogin(false);
+      navigate('/login');
+    });
+  };
 
   const handleToggle = () => {
     setShowMenu(!showMenu);
     console.log(showMenu);
-  }
+  };
 
   return (
     <div className='navbar'>
-      <Link to='/'>  <img src={assets.homeybites} alt="" className="logo" /></Link>
-      
+      <Link to='/'>
+        <img src={assets.homeybites} alt="" className="logo" />
+      </Link>
+
       <nav className={showMenu ? "nav-mobile" : "nav-web"}>
         <ul className="navbar-menu">
           <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</Link>
           <Link to='/menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</Link>
-          {/* <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</a>   */}
           <a href='#' onClick={() => setMenu("about")} className={menu === "about" ? "active" : ""}>About</a>
           <Link to='/subscription' onClick={() => setMenu("subscription")} className={menu === "subscription" ? "active" : ""}>Subscription</Link>
 
-          {/* <a href='#Footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact Us</a> */}
           {
             login && (
               <>
-
                 <a href='#' onClick={() => setProfileOpen(!profileOpen)} className={menu === "profile-drop" ? "active" : ""}>Profile ▼</a>
                 <div className='dropdown'>
                   {
@@ -75,11 +70,6 @@ const Navbar = ({ setShowLogin }) => {
                     )
                   }
                 </div>
-
-                {/* <Link to='/cart' onClick={() => setMenu("cart")} className={menu === "cart" ? "active" : ""}>
-                  <img className='shopping_cart' src={assets.shopping_cart} alt="" />
-                </Link> */}
-
               </>
             )
           }
@@ -91,21 +81,24 @@ const Navbar = ({ setShowLogin }) => {
           }
         </ul>
       </nav>
-      <div onClick={()=> navigate('/cart')} className={login ? 'shopping_cart' : 'cart'}>
-        {
-          login && (
-              <img src={assets.shopping_cart} alt="" />
-          )
-        }
-        </div>
+
+      {/* Dynamic Cart Button */}
+      <div className='shopping_cart' onClick={() => navigate('/cart')} >
+                {login && (
+          <>
+            <img src={assets.shopping_cart} alt="" />
+            { <span className='cart-count'>{cartCount}</span>}
+          </>
+        )}
+      </div>
 
       <div className='ham-menu'>
         <button onClick={handleToggle}>
-          <GiHamburgerMenu></GiHamburgerMenu>
+          <GiHamburgerMenu />
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

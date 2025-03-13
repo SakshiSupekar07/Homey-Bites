@@ -16,6 +16,8 @@ import Menu from './pages/Menu/Menu'
 import MenuItem from './pages/MenuItem/MenuItem'
 import ResetPassword from './components/login-signup/ResetPassword'
 import Subscription from './pages/Subscription/subscription'
+import { CartProvider } from './pages/Cart/cartcontext'
+import { UserCartProvider } from './context/UserCartContext'
 
 
 
@@ -24,23 +26,27 @@ const App = () => {
 
     <>
       <div className='app'>
-         <Navbar /> 
-          <ToastContainer position='top-center' className="custom-toast-container" />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/cart' element={<Cart/>} />
-            <Route path='/order' element={<Placeorder/>} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/signup' element={<SignUp />} />
-            <Route path='/verify-otp' element={<VerifyOtp />} />
-            <Route path='/forgetpassword' element={<ForgetPassword />} />
-            <Route path='/resetpassword' element={<ResetPassword />} />
-            <Route path='/menu' element={<Menu />} />
-            <Route path='/menu/item' element={<MenuItem/>} />
-            <Route path='/subscription' element={<Subscription/>} />
-            
-           
-          </Routes>
+        <UserCartProvider>
+          <CartProvider>
+            <Navbar />
+            <ToastContainer position='top-center' className="custom-toast-container" />
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/cart' element={<Cart />} />
+              <Route path='/order' element={<Placeorder />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/signup' element={<SignUp />} />
+              <Route path='/verify-otp' element={<VerifyOtp />} />
+              <Route path='/forgetpassword' element={<ForgetPassword />} />
+              <Route path='/resetpassword' element={<ResetPassword />} />
+              <Route path='/menu' element={<Menu />} />
+              <Route path='/menu/item' element={<MenuItem />} />
+              <Route path='/subscription' element={<Subscription />} />
+
+
+            </Routes>
+          </CartProvider>
+        </UserCartProvider>
         {/* <Footer/> */}
       </div>
 

@@ -1,43 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { fetchMenu, fetchMenuByType } from '../../Services/MenuService';
-import { addItemToCart, removeItemFromCart, fetchUserCart } from '../../Services/AddToCartService';
+import { addItemToCart, fetchUserCart, removeItemFromCart,  } from '../../Services/AddToCartService';
 import { getUserInfo, isLoggedIn } from '../../components/Auth';
+import { useCart } from '../../pages/Cart/cartcontext';
+import './Menu.css';
 import { toast } from 'react-toastify';
 import { assets } from '../../assets/assets';
 import Base from '../../components/Base/Base';
-import './Menu.css';    
+import { userCart } from '../../context/UserCartContext';
 
 const Menu = () => {
     const [data, setData] = useState([]);
     const [type, setType] = useState('Breakfast');
     const [cart, setCart] = useState({});
+    const [reload, setReload] = useState(false);
+    const { setCartInfo } = userCart([]);
+    const { setCartCount } = useCart(); 
     const userData = getUserInfo();
 
     useEffect(() => {
-        fetchMenu().then((response) => {
-            setData(response);
-        }).catch((error) => console.error("Error fetching data:", error));
+        fetchMenu().then((response) => setData(response))
+            .catch((error) => console.error("Error fetching data:", error));
 
         if (isLoggedIn() && userData) {
            fetchUserCart(userData.userId).then((response) => {
                 const cartData = {};
-                response.forEach(item => {
+                let totalCount = 0;
+
+                (response.data).forEach(item => {
                     cartData[item.menuId] = item.quantity;
+                    totalCount += 1;
                 });
+
                 setCart(cartData);
+                setCartCount(totalCount);  // Update count in cart context
             });
         }
-    }, []);
+    }, [reload]);
 
     const getMenuByType = (type) => {
-        fetchMenuByType(type).then((response) => {
-            setData(response);
-        });
+        fetchMenuByType(type).then((response) => setData(response));
     };
 
     const handleIncrement = (id) => {
         addItemToCart(userData.userId, id).then(() => {
             setCart(prevCart => ({ ...prevCart, [id]: (prevCart[id] || 0) + 1 }));
+            setCartCount(prevCount => prevCount + 1);
             toast.success("Item added to cart successfully!");
         }).catch((error) => console.log(error));
     };
@@ -48,12 +56,15 @@ const Menu = () => {
                 const updatedCart = { ...cart };
                 delete updatedCart[id];
                 setCart(updatedCart);
+                setCartCount(prevCount => prevCount - 1);
                 toast.success("Item removed from cart successfully!");
             }).catch((error) => console.log(error));
         } else {
             addItemToCart(userData.userId, id, -1).then(() => {
                 setCart(prevCart => ({ ...prevCart, [id]: prevCart[id] - 1 }));
+                setCartCount(prevCount => prevCount - 1);
                 toast.success("Item quantity decreased successfully!");
+                setReload(!reload);
             }).catch((error) => console.log(error));
         }
     };
