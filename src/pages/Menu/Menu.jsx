@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchMenu, fetchMenuByType } from '../../Services/MenuService';
-import { addItemToCart, fetchUserCart, removeItemFromCart,  } from '../../Services/AddToCartService';
+import { addItemToCart, fetchUserCart, removeItemFromCart, updateQuantity, } from '../../Services/AddToCartService';
 import { getUserInfo, isLoggedIn } from '../../components/Auth';
 import { useCart } from '../../pages/Cart/cartcontext';
 import './Menu.css';
@@ -12,10 +12,10 @@ import { userCart } from '../../context/UserCartContext';
 const Menu = () => {
     const [data, setData] = useState([]);
     const [type, setType] = useState('Breakfast');
-    const [cart, setCart] = useState({});
+    const [cartData, setCartData] = useState([]);
     const [reload, setReload] = useState(false);
     const { setCartInfo } = userCart([]);
-    const { setCartCount } = useCart(); 
+    const { setCartCount } = useCart();
     const userData = getUserInfo();
 
     useEffect(() => {
@@ -23,7 +23,10 @@ const Menu = () => {
             .catch((error) => console.error("Error fetching data:", error));
 
         if (isLoggedIn() && userData) {
-           fetchUserCart(userData.userId).then((response) => {
+            fetchUserCart(userData.userId).then((response) => {
+                setCartInfo(response.data);
+                setCartData(response.data);
+                console.log(response.data)
                 const cartData = {};
                 let totalCount = 0;
 
@@ -31,42 +34,46 @@ const Menu = () => {
                     cartData[item.menuId] = item.quantity;
                     totalCount += 1;
                 });
-
-                setCart(cartData);
                 setCartCount(totalCount);  // Update count in cart context
             });
         }
-    }, [reload]);
+    }, []);
+
+    const addToCart = (menuId) => {
+        addItemToCart(userData.userId, menuId).then(() => {
+            toast.success("Item added to cart successfully!");
+            setReload(!reload);
+        }).catch((error) => console.log(error));
+    }
+
+    const incrementCount = (menuId) => {
+        const item = cartData.find((item) => item?.menuItem?.menuId === menuId);
+        if(item)
+            updateQuantity(item.cId, item.quantity+1).then((reponse)=>{
+                toast.success("Quantity updated successfully..!")
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
+
+    const decrementCount = (menuId) => {
+        const item = cartData.find((item) => item?.menuItem?.menuId === menuId);
+        if(item)
+            updateQuantity(item.cId, item.quantity-1).then((reponse)=>{
+                toast.success("Quantity updated successfully..!")
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
 
     const getMenuByType = (type) => {
         fetchMenuByType(type).then((response) => setData(response));
     };
 
-    const handleIncrement = (id) => {
-        addItemToCart(userData.userId, id).then(() => {
-            setCart(prevCart => ({ ...prevCart, [id]: (prevCart[id] || 0) + 1 }));
-            setCartCount(prevCount => prevCount + 1);
-            toast.success("Item added to cart successfully!");
-        }).catch((error) => console.log(error));
-    };
-
-    const handleDecrement = (id) => {
-        if (cart[id] === 1) {
-            removeItemFromCart(userData.userId, id).then(() => {
-                const updatedCart = { ...cart };
-                delete updatedCart[id];
-                setCart(updatedCart);
-                setCartCount(prevCount => prevCount - 1);
-                toast.success("Item removed from cart successfully!");
-            }).catch((error) => console.log(error));
-        } else {
-            addItemToCart(userData.userId, id, -1).then(() => {
-                setCart(prevCart => ({ ...prevCart, [id]: prevCart[id] - 1 }));
-                setCartCount(prevCount => prevCount - 1);
-                toast.success("Item quantity decreased successfully!");
-                setReload(!reload);
-            }).catch((error) => console.log(error));
-        }
+    const getCartItemCount = (menuId) => {
+        const item = cartData.find((item) => item?.menuItem?.menuId === menuId);
+        item ? console.log(menuId) : console.log("Not Found");
+        return item ? item.quantity : 0;
     };
 
     return (
@@ -88,14 +95,14 @@ const Menu = () => {
                                         <p className="menu-description">{item.description}</p>
                                         <p className="menu-price">Price: <img src={assets.ruppee} className='ruppee-img' /> {item.price}</p>
                                         <div className='menu-buttons'>
-                                            {cart[item.menuId] ? (
+                                            {getCartItemCount(item.menuId) > 0 ? (
                                                 <div className='quantity-controls'>
-                                                    <button className='quantity-btn decrement' onClick={() => handleDecrement(item.menuId)}>-</button>
-                                                    <span className='quantity-value'>{cart[item.menuId]}</span>
-                                                    <button className='quantity-btn' onClick={() => handleIncrement(item.menuId)}>+</button>
+                                                    <button className='quantity-btn decrement' onClick={() => decrementCount(item.menuId)}>-</button>
+                                                    <span className='quantity-value'>{getCartItemCount(item.menuId)}</span>
+                                                    <button className='quantity-btn' onClick={() => incrementCount(item.menuId)}>+</button>
                                                 </div>
                                             ) : (
-                                                <button onClick={() => handleIncrement(item.menuId)} className="add-to-cart">Add to Cart</button>
+                                                <button onClick={() => addToCart(item.menuId)} className="add-to-cart">Add to Cart</button>
                                             )}
                                         </div>
                                     </div>
