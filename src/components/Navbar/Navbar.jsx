@@ -48,9 +48,9 @@ const Navbar = ({ setShowLogin }) => {
 
       <nav className={showMenu ? "nav-mobile" : "nav-web"}>
         <ul className="navbar-menu">
-          <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</Link>
+          <Link to='/#home' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</Link>
           <Link to='/menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</Link>
-          <a href='#' onClick={() => setMenu("about")} className={menu === "about" ? "active" : ""}>About</a>
+          <Link to='/#about' onClick={() => setMenu("about")} className={menu === "about" ? "active" : ""}> About</Link>
           <Link to='/subscription' onClick={() => setMenu("subscription")} className={menu === "subscription" ? "active" : ""}>Subscription</Link>
 
           {
@@ -84,12 +84,12 @@ const Navbar = ({ setShowLogin }) => {
 
       {/* Dynamic Cart Button */}
       <div className='shopping_cart' onClick={() => navigate('/cart')} >
-                {login && (
+               
           <>
             <img src={assets.shopping_cart} alt="" />
             { <span className='cart-count'>{cartCount}</span>}
           </>
-        )}
+        
       </div>
 
       <div className='ham-menu'>

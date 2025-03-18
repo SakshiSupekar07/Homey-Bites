@@ -8,7 +8,7 @@ import Base from '../../components/Base/Base'
 const home = () => {
   const [category, setCategory] = useState("All");
   return (
-    <div>
+    <div className="home" id='home'> 
       <Base>
         <Header />
         <Fooddisplay />

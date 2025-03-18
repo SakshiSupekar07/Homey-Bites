@@ -80,7 +80,7 @@ const cart = () => {
     removeAllItemFromCart(userId).then((response) => {
       console.log(response)
       setReload(!reload)
-      toast.success("All items rmoved from cart")
+      toast.success("All items removed from cart")
     }).catch((error) => {
       console.log(error)
     })
@@ -155,4 +155,4 @@ const cart = () => {
   )
 }
 
-export default cart;
+export default cart; 
