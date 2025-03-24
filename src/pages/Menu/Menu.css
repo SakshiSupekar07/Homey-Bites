@@ -162,6 +162,13 @@
     cursor: pointer;
     transition: background-color 0.3s;
 }
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 
 .add-to-cart:hover {
     background-color: #45a049;

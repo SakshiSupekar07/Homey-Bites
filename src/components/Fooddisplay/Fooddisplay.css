@@ -18,6 +18,30 @@
   white-space: nowrap; 
   background-color: #eee;
 } 
+.loader {
+  position: fixed; /* Keeps it in place */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8); /* Optional: Adds a slight overlay effect */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensures it appears above other elements */
+}
+
+
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
 
 /* Grid for 3 Cards Per Row */
 .food-grid {

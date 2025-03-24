@@ -5,154 +5,146 @@ import { fetchUserCart, removeAllItemFromCart, removeItemFromCart, updateQuantit
 import { assets } from '../../assets/assets';
 import { toast } from 'react-toastify';
 import Base from '../../components/Base/Base';
+import ClipLoader from "react-spinners/ClipLoader";
 
-const cart = () => {
-
+const Cart = () => {
   const user = getUserInfo();
   const [cartData, setCartData] = useState([]);
   const [reload, setReload] = useState(false);
   const [quantity, setQuantity] = useState({});
-  const [cartTotal, setCartTotal] = useState();
-
+  const [cartTotal, setCartTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const getCart = () => {
-    if (user != null) {
-      //fetching cart data
-      fetchUserCart(user.userId).then((response) => {
-        setCartData(response.data);
+    if (user) {
+      setLoading(true); // Start loading
+      fetchUserCart(user.userId)
+        .then((response) => {
+          setCartData(response.data);
 
-        //intializing quantity
-        const initialSelection = {};
-        let totalCount = 0;
-        (response.data).forEach((item) => {
-          initialSelection[item.cId] = item?.quantity;
-          totalCount += 1;
+          // Initialize quantity
+          const initialSelection = {};
+          let totalCount = 0;
+          response.data.forEach((item) => {
+            initialSelection[item.cId] = item?.quantity;
+            totalCount += 1;
+          });
+          setQuantity(initialSelection);
+
+          // Initialize cart total
+          let total = 0;
+          response.data.forEach((item) => {
+            total += item?.totalPrice;
+          });
+          setCartTotal(total);
+
+          setLoading(false); 
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false); 
         });
-        setQuantity(initialSelection);
-
-        // intializing cart total
-        let total = 0;
-        (response.data).forEach((item) => {
-          total += item?.totalPrice;
-        });
-        setCartTotal(total);
-
-      }).catch((error) => {
-        console.log(error)
-      })
+    } else {
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     getCart();
-  }, [reload])
+  }, [reload]);
 
   const removeItem = (cartId) => {
-    if (cartData != null) {
-      removeItemFromCart(cartId).then((response) => {
-        console.log(response)
-        setReload(!reload)
-        toast.success("Menu item removed successfully..!")
-      }).catch((error) => {
-        console.log(error)
+    removeItemFromCart(cartId)
+      .then(() => {
+        setReload(!reload);
+        toast.success("Menu item removed successfully!");
       })
-    }
-  }
+      .catch((error) => console.log(error));
+  };
 
   const handleSelectChange = (id, event) => {
-
     setQuantity((prev) => ({
       ...prev,
       [id]: event.target.value,
     }));
-    console.log(event.target.value)
-    console.log("menu id:", id)
 
-    updateQuantity(id, event.target.value).then((response) => {
-      console.log("success", response)
-      setReload(!reload)
-    }).catch((error) => {
-      console.log("error", error)
-    })
-  }
+    updateQuantity(id, event.target.value)
+      .then(() => {
+        setReload(!reload);
+      })
+      .catch((error) => console.log(error));
+  };
 
   const removeAllItem = (userId) => {
-    removeAllItemFromCart(userId).then((response) => {
-      console.log(response)
-      setReload(!reload)
-      toast.success("All items removed from cart")
-    }).catch((error) => {
-      console.log(error)
-    })
-  }
-
-  const items = cartData;
+    removeAllItemFromCart(userId)
+      .then(() => {
+        setReload(!reload);
+        toast.success("All items removed from cart");
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <Base>
       <div className='cart'>
         <div className='cart-data'>
-          {
-            (items != null) && (
-              <>
-                <h1 className='cart-header'>Cart</h1>
-                <div className='cart-container'>
-
-                  <div className='cart-items'>
-                    {items.map((item) => (
-                      <div key={item?.cId} className='items'>
-                        <div className='item-card'>
-                          <div className='item-image'>
-                            <img src={item?.menuItem?.imageUrl} alt={item?.menuItem?.menuName} />
-                          </div>
-                          <div className='item-info'>
-                            <div className='item-desc'>
-                              <h3>{item?.menuItem?.menuName}</h3>
-                              <p>{item?.menuItem?.description}</p>
-                              <p><img src={assets.ruppee} className='ruppee-img' />{item?.menuItem?.price}</p>
-                              <div className="custom-select">
-                                <select value={quantity[item?.cId] || ""} onChange={(event) => handleSelectChange(item?.cId, event)}>
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                                  <option value="4">4</option>
-                                  <option value="5">5</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div>
-                              <img src={assets.trash} alt='trash' onClick={() => removeItem(item?.cId)} className='trash-img' />
-                            </div>
-                          </div>
+          {loading ? (
+            <div className="loader-container">
+              <ClipLoader color="#ff6600" size={70} />
+            </div>
+          ) : cartData.length > 0 ? (
+            <>
+              <h1 className='cart-header'>Cart</h1>
+              <div className='cart-container'>
+                <div className='cart-items'>
+                  {cartData.map((item) => (
+                    <div key={item?.cId} className='items'>
+                      <div className='item-card'>
+                        <div className='item-image'>
+                          <img src={item?.menuItem?.imageUrl} alt={item?.menuItem?.menuName} />
                         </div>
-                        <div className='item-total'>
-                          <p>Total:<img src={assets.ruppee} className='ruppee-img' /> {item?.totalPrice}</p>
+                        <div className='item-info'>
+                          <div className='item-desc'>
+                            <h3>{item?.menuItem?.menuName}</h3>
+                            <p>{item?.menuItem?.description}</p>
+                            <p><img src={assets.ruppee} className='ruppee-img' />{item?.menuItem?.price}</p>
+                            <div className="custom-select">
+                              <select value={quantity[item?.cId] || ""} onChange={(event) => handleSelectChange(item?.cId, event)}>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div>
+                            <img src={assets.trash} alt='trash' onClick={() => removeItem(item?.cId)} className='trash-img' />
+                          </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
-
-                  <div className='cart-checkout'>
-                    <p>Subtotal: <img src={assets.ruppee} className='ruppee-img' />{cartTotal}</p>
-                    <button className='cart-pay'>Proceed to pay</button>
-                  </div>
-
+                      <div className='item-total'>
+                        <p>Total:<img src={assets.ruppee} className='ruppee-img' /> {item?.totalPrice}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <button onClick={() => removeAllItem(user.userId
-
-                )} className='remove-all'>Remove All</button>
-              </>
-            )
-          }
-          {
-            (items == null) && (
-              <div className='cart-items'>Loading...</div>
-            )
-          }
+                <div className='cart-checkout'>
+                  <p>Subtotal: <img src={assets.ruppee} className='ruppee-img' />{cartTotal}</p>
+                  <button className='cart-pay'>Proceed to Pay</button>
+                </div>
+              </div>
+              <button onClick={() => removeAllItem(user.userId)} className='remove-all'>Remove All</button>
+            </>
+          ) : (
+            <div className='empty-cart'>
+              <h2>Your cart is empty</h2>
+            </div>
+          )}
         </div>
       </div>
     </Base>
-  )
-}
+  );
+};
 
-export default cart; 
+export default Cart;

@@ -52,7 +52,7 @@ const Navbar = ({ setShowLogin }) => {
           <Link to='/menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</Link>
           <Link to='/#about' onClick={() => setMenu("about")} className={menu === "about" ? "active" : ""}> About</Link>
           <Link to='/subscription' onClick={() => setMenu("subscription")} className={menu === "subscription" ? "active" : ""}>Subscription</Link>
-
+         
           {
             login && (
               <>
@@ -62,7 +62,7 @@ const Navbar = ({ setShowLogin }) => {
                     profileOpen && (
                       <div id='profile-dropdown' className='dropdown-menu'>
                         <ul>
-                          <li><a href='#' onClick={() => setMenu("profile")} className={menu === "profile" ? "active" : ""}>Profile</a></li>
+                          <li><Link to='/profile' onClick={() => setMenu("profile")} className={menu === "profile" ? "active" : ""}>Profile</Link></li>
                           <li><a href='#' onClick={() => setMenu("orders")} className={menu === "orders" ? "active" : ""}>My orders</a></li>
                           <li><Link to='/login' onClick={logOut}>Logout</Link></li>
                         </ul>

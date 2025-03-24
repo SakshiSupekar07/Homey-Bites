@@ -15,6 +15,14 @@ a{
   text-decoration:none;
   color:inherit;
 }
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+}
+
 .app
 {
   width:100%;
