@@ -12,7 +12,7 @@ import ForgetPassword from './components/login-signup/forgetpassword';
 import Menu from './pages/Menu/Menu';
 import MenuItem from './pages/MenuItem/MenuItem';
 import ResetPassword from './components/login-signup/ResetPassword';
-//import Subscription from './pages/Subscription/Subscription'; 
+import Subscription from './pages/Subscription/Subscription';
 
 
 import { CartProvider } from './pages/Cart/cartcontext';
@@ -52,6 +52,7 @@ const App = () => {
                 <Route path="/resetpassword" element={<ResetPassword />} />
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/menu/item" element={<MenuItem />} />
+                <Route path="/subscription" element={<Subscription />} />
                 
                 
                 
