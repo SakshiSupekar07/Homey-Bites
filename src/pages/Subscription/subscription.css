@@ -1,6 +1,6 @@
 .subscription-container {
     max-width: 1200px;
-    margin: 100px auto 20px; /* Adjusted for fixed navbar */
+    margin: 100px auto 20px; 
     padding: 175px;
     text-align: center;
     margin-top: 2px;
@@ -16,7 +16,7 @@
 
 .plans-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Exactly 3 columns */
+    grid-template-columns: repeat(3, 1fr); 
     gap:  40px 20px;
     justify-content: center;
     align-items: stretch;
@@ -25,16 +25,16 @@
 
 .plan-card {
     background: white;
-    padding: 30px; /* Increase padding for a bigger appearance */
+    padding: 30px; 
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.2s;
     min-height: 300px; 
-    min-width: 350px;/* Ensures a taller card */
+    min-width: 350px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Even spacing inside the card */
+    justify-content: space-between; 
 }
 
 .plan-card:hover {

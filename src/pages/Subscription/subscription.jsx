@@ -28,7 +28,7 @@ const subscription = () => {
             name: "Deluxe Plan",
             planType: "Veg + Non-Veg",
             price: 3499,
-            items: ["Roti", "Chicken Curry", "Rice", "Salad"],
+            items: ["Roti", "Paneer Angara", "Rice", "Salad"],
         },
         {
             id: 5,
@@ -42,7 +42,7 @@ const subscription = () => {
             name: "Special Plan",
             planType: "Veg + Non-Veg",
             price: 4499,
-            items: ["Roti", "Chicken Curry", "Rice", "Salad"],
+            items: ["Roti", "Veg Maratha", "Rice", "Salad"],
         }
     ];
 
