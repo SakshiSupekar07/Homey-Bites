@@ -17,6 +17,7 @@ import Subscription from './pages/Subscription/subscription';
 import { CartProvider } from './pages/Cart/cartcontext';
 import { UserCartProvider } from './context/UserCartContext';
 import ClipLoader from "react-spinners/ClipLoader";
+import subscriptionbyid from './pages/Subscription/subscriptionbyid';
 
 
 const App = () => {
@@ -52,6 +53,7 @@ const App = () => {
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/menu/item" element={<MenuItem />} />
                 <Route path="/subscription" element={<Subscription />} />
+                <Route path="/subscriptionbyid" element={<subscriptionbyid />} />
               </Routes>
               {/* <Footer /> */} 
             </CartProvider>
