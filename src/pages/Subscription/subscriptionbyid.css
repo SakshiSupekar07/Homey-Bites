@@ -1,21 +1,19 @@
 .plan-details {
-    padding: 4rem 2rem;
     background-color: #f4f4f4;
-    min-height: 100vh;
+    min-height: 100vh;  
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 60px;
   }
   
   table {
     border-collapse: collapse;
-    width: 90%;
     background-color: #fff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
     overflow: hidden;
+    width: 100%;
   }
   
   thead {
@@ -47,5 +45,55 @@
   .loader-container {
     padding-top: 100px;
     text-align: center;
+  }
+
+  .plan-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .plan-info input{
+    width: 100%;
+    height: 25px;
+    padding: 5px;
+  }
+
+  .plan-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .plan-checkbox {
+    display: flex;
+  }
+
+  .checkbox-item {
+    display: flex;
+    margin-right: 20px;
+    gap: 5px;
+  }
+
+  .plan-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .plan-button{
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ff6600;
+    color: white;
+    font-size: medium;
+  }
+
+  .plan-button:hover {
+    background-color: #ff8533;
   }
   

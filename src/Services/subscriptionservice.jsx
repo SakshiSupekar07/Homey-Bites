@@ -12,11 +12,12 @@ export const getTiffinPlanById = (planId) => {
 };
 
 
-export const addTiffinPlan = (planData) => {
-    return myAxios.post("/api/v1/tiffinplan/", planData)
+export const addSubscription = (userId, planId, planData) => {
+    return myAxios.post(`/api/v1/subscription/user/${userId}/plan/${planId}`, planData)
         .then((res) => res.data);
 };
 
+// /api/v1/subscription/user/{userId}/plan/{planId}
 
 export const updateTiffinPlan = (planId, updatedData) => {
     return myAxios.put("/api/v1/tiffinplan/${planId}", updatedData)
