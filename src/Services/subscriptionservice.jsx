@@ -7,7 +7,7 @@ export const getAllTiffinPlans = () => {
 
 
 export const getTiffinPlanById = (planId) => {
-    return myAxios.get("/api/v1/tiffinplan/${planId}")
+    return myAxios.get(`api/v1/tiffinplan/${planId}`)
         .then((res) => res.data);
 };
 
