@@ -1,7 +1,7 @@
 .subscription-container {
     max-width: 1200px;
     margin: 100px auto 20px; 
-    padding: 175px;
+    padding: 35px;
     text-align: center;
     margin-top: 2px;
     min-height: 100vh;
@@ -82,3 +82,30 @@
 .choose-btn:hover {
     background-color: #0056b3;
 }
+
+@media (max-width: 1024px) {
+    .plans-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px 15px;
+    }
+  }
+  
+
+  @media (max-width: 768px) {
+    .plans-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  
+    .plan-card {
+      min-width: auto;       
+      padding: 20px;         
+      min-height: auto;      
+    }
+  
+    .subscription-container {
+      padding: 20px 10px;    
+      margin: 20px auto;    
+    }
+  }
+  
